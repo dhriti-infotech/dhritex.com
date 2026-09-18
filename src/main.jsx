@@ -97,8 +97,8 @@ function App() {
             <div className="hero-screen-frame">
               <img src="/assets/carenow-user.jpg" alt="CareNow user app home screen" />
             </div>
-            <div className="float-card float-top"><div className="float-icon cyan"><Icon name="shield" size={21} /></div><div><strong>CareNow</strong><span>Healthcare at your doorstep</span></div></div>
-            <div className="float-card float-bottom"><div className="float-icon navy"><Icon name="cloud" size={21} /></div><div><strong>Digital Solutions</strong><span>Designed to grow with you</span></div></div>
+            <div className="float-card float-top"><div className="float-icon cyan"><Icon name="shield" size={21} /></div><div><strong>CareNow - Coming soon...</strong><span>Healthcare at your doorstep</span></div></div>
+            <div className="float-card float-bottom"><div className="float-icon navy"><Icon name="cloud" size={21} /></div><div><strong>Digital Solutions</strong><span>Currently in development</span></div></div>
           </div>
         </div>
       </header>
