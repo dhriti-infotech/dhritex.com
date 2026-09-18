@@ -170,8 +170,8 @@ function App() {
         <div className="container">
           <SectionHeading eyebrow="Leadership" title="People behind Dhriti Infotech." center>Focused leadership across technology, product direction, operations and people.</SectionHeading>
           <div className="leadership-grid">
-            <article className="leader-card"><div className="leader-avatar">R</div><div><span>Founder, CEO &amp; CTO</span><h3>Roshan</h3><p>Technology, architecture, product engineering and innovation.</p></div></article>
-            <article className="leader-card"><div className="leader-avatar cyan-bg">J</div><div><span>CFO &amp; HR</span><h3>Jyoti</h3><p>Finance, people operations and organizational growth.</p></div></article>
+            {/* <article className="leader-card"><div className="leader-avatar">R</div><div><span>Founder&amp; CEO</span><h3>Jyoti Singh</h3><p>Technology, architecture, product engineering and innovation.</p></div></article> */}
+            {/* <article className="leader-card"><div className="leader-avatar cyan-bg">J</div><div><span>CFO &amp; HR</span><h3>Jyoti</h3><p>Finance, people operations and organizational growth.</p></div></article> */}
           </div>
         </div>
       </section>
