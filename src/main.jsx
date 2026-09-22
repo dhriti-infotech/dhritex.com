@@ -7,6 +7,7 @@ const phoneScreens = [
   { title: 'User App', label: 'CareNow patient experience', image: '/assets/carenow-user.jpg' },
   { title: 'Professional App', label: 'Healthcare worker dashboard', image: '/assets/carenow-professional.jpg' },
   { title: 'Login & Onboarding', label: 'Simple OTP-based access', image: '/assets/carenow-login.jpg' },
+  { title: 'Service Tracking', label: 'Real-time service updates', image: '/assets/carenow-service.jpeg' },
 ];
 
 function Icon({ name, size = 22 }) {
