@@ -5,7 +5,7 @@ import './styles.css';
 const logo = '/assets/dhritex-logo.png';
 const phoneScreens = [
   { title: 'User App', label: 'CareNow patient experience', image: '/assets/carenow-user.jpg' },
-  { title: 'Professional App', label: 'Healthcare worker dashboard', image: '/assets/carenow-professional.jpg' },
+  { title: 'Professional App', label: 'Healthcare worker dashboard', image: '/assets/carenow-professional1.jpg' },
   { title: 'Login & Onboarding', label: 'Simple OTP-based access', image: '/assets/carenow-login.jpg' },
   { title: 'Service Tracking', label: 'Real-time service updates', image: '/assets/carenow-service.jpeg' },
 ];
@@ -116,7 +116,7 @@ function App() {
       <section className="section" id="about">
         <div className="container about-grid">
           <div className="about-visual">
-            <div className="about-main-card"><img src="/assets/carenow-professional.jpg" alt="CareNow professional dashboard" /></div>
+            <div className="about-main-card"><img src="/assets/carenow-professional1.jpg" alt="CareNow professional dashboard" /></div>
             <div className="about-badge"><span className="badge-mark"><Icon name="spark" size={19} /></span><div><strong>Dhriti Infotech</strong><small>Technology &amp; innovation</small></div></div>
             <div className="about-accent" />
           </div>
