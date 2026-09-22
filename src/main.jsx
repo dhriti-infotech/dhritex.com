@@ -182,7 +182,7 @@ function App() {
           <div>
             <SectionHeading eyebrow="Contact Us" title="Let's build something useful together.">Have a product idea, software requirement or partnership opportunity? Reach out to Dhriti Infotech.</SectionHeading>
             <div className="contact-items">
-              <a href="tel:+919704240105"><span><Icon name="phone" size={20} /></span><div><small>Call us</small><strong>+91 9704240105</strong></div></a>
+              <a href="tel:+919472501328"><span><Icon name="phone" size={20} /></span><div><small>Call us</small><strong>+91 9472501328</strong></div></a>
               <a href="mailto:infotech.dhriti@gmail.com"><span><Icon name="mail" size={20} /></span><div><small>Email us</small><strong>infotech.dhriti@gmail.com</strong></div></a>
               <div><span><Icon name="pin" size={20} /></span><div><small>Office</small><strong>Hitech City, Hyderabad, Telangana, India</strong></div></div>
             </div>
@@ -190,7 +190,7 @@ function App() {
           <div className="contact-card">
             <div className="contact-card-head"><div className="mini-logo"><img src={logo} alt="dhritex.com" /></div><div><strong>Dhriti Infotech</strong><span>Technology • Products • Innovation</span></div></div>
             <p>For business enquiries, product discussions and technology partnerships, contact us directly.</p>
-            <div className="contact-buttons"><a className="btn primary" href="mailto:infotech.dhriti@gmail.com">Email Dhriti <Icon name="arrow" size={17} /></a><a className="btn outline" href="https://wa.me/919704240105" target="_blank" rel="noreferrer"><Icon name="whatsapp" size={18} /> WhatsApp</a></div>
+            <div className="contact-buttons"><a className="btn primary" href="mailto:infotech.dhriti@gmail.com">Email Dhriti <Icon name="arrow" size={17} /></a><a className="btn outline" href="https://wa.me/919472501328" target="_blank" rel="noreferrer"><Icon name="whatsapp" size={18} /> WhatsApp</a></div>
           </div>
         </div>
       </section>
@@ -199,13 +199,13 @@ function App() {
         <div className="container footer-grid">
           <div><img className="footer-logo" src={logo} alt="dhritex.com" /><p>Building digital products and technology solutions with a focus on simplicity, reliability and scale.</p></div>
           <div><h4>Company</h4><button onClick={() => go('about')}>About</button><button onClick={() => go('products')}>Products</button><button onClick={() => go('clients')}>Clients</button></div>
-          <div><h4>Connect</h4><a href="tel:+919704240105">+91 9704240105</a><a href="mailto:infotech.dhriti@gmail.com">infotech.dhriti@gmail.com</a><span>Hitech City, Hyderabad, Telangana</span></div>
+          <div><h4>Connect</h4><a href="tel:+919472501328">+91 9472501328</a><a href="mailto:infotech.dhriti@gmail.com">infotech.dhriti@gmail.com</a><span>Hitech City, Hyderabad, Telangana</span></div>
         </div>
         <div className="container footer-bottom"><span>© 2026 Dhriti Infotech. All rights reserved.</span><span>dhritex.com</span></div>
       </footer>
 
       <div className="floating-actions" aria-label="Quick contact">
-        <a className="float-action whatsapp" href="https://wa.me/919704240105" target="_blank" rel="noreferrer" aria-label="WhatsApp Dhriti Infotech"><Icon name="whatsapp" size={24} /></a>
+        <a className="float-action whatsapp" href="https://wa.me/919472501328" target="_blank" rel="noreferrer" aria-label="WhatsApp Dhriti Infotech"><Icon name="whatsapp" size={24} /></a>
         <a className="float-action email" href="mailto:infotech.dhriti@gmail.com" aria-label="Email Dhriti Infotech"><Icon name="mail" size={23} /></a>
       </div>
       <button className="scroll-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Scroll to top"><Icon name="arrow" size={19} /></button>

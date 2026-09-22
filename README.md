@@ -37,10 +37,10 @@ The project is Vite-compatible and can be deployed to GitHub Pages, Netlify, Ver
 
 ## Contact details configured
 
-- Phone: +91 9704240105
+- Phone: +91 9472501328
 - Email: infotech.dhriti@gmail.com
 - Address: Hitech City, Hyderabad, Telangana, India
-- WhatsApp: https://wa.me/919704240105
+- WhatsApp: https://wa.me/919472501328
 
 ## Template note
 
