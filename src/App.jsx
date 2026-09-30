@@ -2,32 +2,50 @@ import React, { useEffect, useState } from 'react';
 
 import AdminDashboard from './pages/AdminDashboard';
 import HomePage from './pages/HomePage';
+import BackendKeepAlive from './components/BackendKeepAlive';
 
 function App() {
-  const [route, setRoute] = useState(window.location.hash);
+    const [route, setRoute] = useState(window.location.hash);
 
-  useEffect(() => {
-    const handleHashChange = () => setRoute(window.location.hash);
+    useEffect(() => {
+        const handleHashChange = () => {
+            setRoute(window.location.hash);
+        };
 
-    window.addEventListener('hashchange', handleHashChange);
+        window.addEventListener('hashchange', handleHashChange);
 
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+        return () => {
+            window.removeEventListener(
+                'hashchange',
+                handleHashChange
+            );
+        };
+    }, []);
 
-  const openAdmin = () => {
-    window.location.hash = '/admin';
-  };
+    const openAdmin = () => {
+        window.location.hash = '/admin';
+    };
 
-  const exitAdmin = () => {
-    window.location.hash = '';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    const exitAdmin = () => {
+        window.location.hash = '';
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
 
-  if (route === '#/admin') {
-    return <AdminDashboard onExit={exitAdmin} />;
-  }
+    return (
+        <>
+            {/* Backend health check every 12 minutes */}
+            <BackendKeepAlive />
 
-  return <HomePage onOpenAdmin={openAdmin} />;
+            {route === '#/admin' ? (
+                <AdminDashboard onExit={exitAdmin} />
+            ) : (
+                <HomePage onOpenAdmin={openAdmin} />
+            )}
+        </>
+    );
 }
 
 export default App;
