@@ -26,3 +26,11 @@ The public website has no Admin Console markup inside `HomePage.jsx`. The only c
 ## API configuration
 
 `src/config.js` contains the shared API configuration. Set `VITE_API_BASE_URL` in `.env` for deployment.
+
+## Service Request Analytics
+
+The Admin Console includes a Service Requests view backed by:
+
+`GET /api/admin/nurse-service-requests`
+
+The view supports searching by nurse/requester name, mobile number, completion code, or status and filtering by request status.

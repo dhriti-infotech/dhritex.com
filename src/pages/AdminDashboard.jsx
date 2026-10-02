@@ -9,11 +9,13 @@ const API_BASE = SITE_CONFIG.apiBaseUrl;
 function AdminDashboard({ onExit }) {
   const [token, setToken] = useState(() => sessionStorage.getItem('dhritex_admin_token') || '');
   const [login, setLogin] = useState({ username: '', password: '' });
-  const [data, setData] = useState({ summary: null, users: [], professionals: [], areas: [] });
+  const [data, setData] = useState({ summary: null, users: [], professionals: [], areas: [], requests: [] });
   const [sort, setSort] = useState('desc');
   const [area, setArea] = useState('');
   const [mobileSearch, setMobileSearch] = useState('');
   const [userSearch, setUserSearch] = useState('');
+  const [requestSearch, setRequestSearch] = useState('');
+  const [requestStatus, setRequestStatus] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -51,16 +53,18 @@ function AdminDashboard({ onExit }) {
     setError('');
 
     try {
-      const [summary, users, professionals] = await Promise.all([
+      const [summary, users, professionals, requests] = await Promise.all([
         authFetch('/api/admin/dashboard'),
         authFetch('/api/admin/users'),
-        authFetch(`/api/admin/professionals?sort=${sort}${area ? `&area=${encodeURIComponent(area)}` : ''}`)
+        authFetch(`/api/admin/professionals?sort=${sort}${area ? `&area=${encodeURIComponent(area)}` : ''}`),
+        authFetch('/api/admin/nurse-service-requests')
       ]);
 
       setData({
         summary,
         users,
         professionals,
+        requests,
         areas: summary.areaEarnings || []
       });
     } catch (e) {
@@ -103,7 +107,7 @@ function AdminDashboard({ onExit }) {
   const logout = () => {
     sessionStorage.removeItem('dhritex_admin_token');
     setToken('');
-    setData({ summary: null, users: [], professionals: [], areas: [] });
+    setData({ summary: null, users: [], professionals: [], areas: [], requests: [] });
   };
 
   const openProfessional = async (professional) => {
@@ -170,6 +174,29 @@ function AdminDashboard({ onExit }) {
       .filter(Boolean)
       .some((value) => String(value).toLowerCase().includes(query));
   });
+
+  const filteredRequests = data.requests.filter((request) => {
+    const query = requestSearch.trim().toLowerCase();
+    const matchesSearch = !query || [
+      request.nurseName,
+      request.nurseMobile,
+      request.requestedByName,
+      request.requestedByMobile,
+      request.completionCode,
+      request.status,
+      request.patientName
+    ]
+      .filter(Boolean)
+      .some((value) => String(value).toLowerCase().includes(query));
+
+    const matchesStatus = !requestStatus || request.status === requestStatus;
+
+    return matchesSearch && matchesStatus;
+  });
+
+  const requestStatuses = [...new Set(
+    data.requests.map((request) => request.status).filter(Boolean)
+  )];
 
   const s = data.summary;
   const maxArea = Math.max(
@@ -257,51 +284,9 @@ function AdminDashboard({ onExit }) {
     <div className="admin-app">
       <aside className="admin-sidebar">
         <div className="admin-sidebar-top">
-          <button
-            className="admin-sidebar-brand"
-            onClick={onExit}
-            aria-label="Return to Dhritex website"
-            style={{ gap: '8px', justifyContent: 'flex-start' }}
-          >
-            <img
-              className="admin-carenow-logo"
-              src="/assets/carenow-logo.png"
-              alt="CareNow"
-              style={{ width: '104px', maxWidth: '104px', flexShrink: 0 }}
-            />
-
-            <span
-              className="admin-brand-separator"
-              aria-hidden="true"
-              style={{
-                width: '1px',
-                height: '34px',
-                flexShrink: 0,
-                padding: 0,
-                borderLeft: '1px solid #d9e7eb',
-                display: 'block'
-              }}
-            />
-
-            <img
-              className="admin-dhritex-logo"
-              src="/assets/dhritex-logo.png"
-              alt="dhritex.com"
-              style={{ width: '82px', maxWidth: '82px', height: 'auto', flexShrink: 0 }}
-            />
-
-            {/* <span
-              className="admin-brand-separator"
-              aria-hidden="true"
-              style={{
-                width: '1px',
-                height: '34px',
-                flexShrink: 0,
-                padding: 0,
-                borderLeft: '1px solid #d9e7eb',
-                display: 'block'
-              }}
-            /> */}
+          <button className="admin-sidebar-brand" onClick={onExit}>
+            <img className="admin-carenow-logo" src="/assets/carenow-logo.png" alt="CareNow" />
+            <span>Admin Console</span>
           </button>
 
           <div className="admin-sidebar-status">
@@ -331,6 +316,12 @@ function AdminDashboard({ onExit }) {
               onClick={() => goToView('users')}
             >
               <Icon name="users" size={18} /> Registered Users
+            </button>
+            <button
+              className={activeView === 'requests' ? 'active' : ''}
+              onClick={() => goToView('requests')}
+            >
+              <Icon name="chart" size={18} /> Service Requests
             </button>
           </div>
 
@@ -388,11 +379,12 @@ function AdminDashboard({ onExit }) {
         <div className="admin-content">
           <div className="admin-page-heading">
             <div>
-              <span className="admin-kicker">CARENNOW / ADMIN</span>
+              <span className="admin-kicker">DHRITEX / ADMIN</span>
               <h1>
                 {activeView === 'overview' && 'Operations overview'}
                 {activeView === 'professionals' && 'Professional directory'}
                 {activeView === 'users' && 'Registered users'}
+                {activeView === 'requests' && 'Service requests'}
               </h1>
               <p>
                 {activeView === 'overview' &&
@@ -401,6 +393,8 @@ function AdminDashboard({ onExit }) {
                   'Search, review and approve CareNow professionals.'}
                 {activeView === 'users' &&
                   'View all registered CareNow users and their account details.'}
+                {activeView === 'requests' &&
+                  'Review all nurse service requests, requester details, completion codes and current status.'}
               </p>
             </div>
             <div className="admin-heading-meta">
@@ -679,6 +673,109 @@ function AdminDashboard({ onExit }) {
               </div>
 
               {!filteredUsers.length && <div className="empty-state">No users match the search.</div>}
+            </div>
+          )}
+
+          {activeView === 'requests' && (
+            <div className="admin-panel admin-directory-panel">
+              <div className="directory-toolbar request-toolbar">
+                <div>
+                  <span className="directory-count">{filteredRequests.length} requests</span>
+                  {requestSearch && (
+                    <button className="clear-search" onClick={() => setRequestSearch('')}>
+                      Clear search
+                    </button>
+                  )}
+                </div>
+
+                <div className="admin-filters admin-filters-new">
+                  <label>
+                    Status
+                    <select value={requestStatus} onChange={(e) => setRequestStatus(e.target.value)}>
+                      <option value="">All statuses</option>
+                      {requestStatuses.map((status) => (
+                        <option key={status} value={status}>
+                          {status}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+              </div>
+
+              <div className="request-search-card">
+                <div className="mobile-search-icon"><Icon name="search" size={18} /></div>
+                <div>
+                  <span>Search requests</span>
+                  <strong>Nurse, requester, mobile or completion code</strong>
+                </div>
+                <input
+                  value={requestSearch}
+                  onChange={(e) => setRequestSearch(e.target.value)}
+                  placeholder="Search by mobile number or name"
+                />
+              </div>
+
+              <div className="table-wrap">
+                <table className="admin-table admin-table-new request-table">
+                  <thead>
+                    <tr>
+                      <th>Nurse</th>
+                      <th>Requested by</th>
+                      <th>Completion code</th>
+                      <th>Status</th>
+                      <th>Requested</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredRequests.map((request) => (
+                      <tr key={request.requestId}>
+                        <td>
+                          <div className="professional-cell">
+                            <div className="professional-avatar">
+                              {String(request.nurseName || 'N').charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                              <strong>{request.nurseName || 'Not assigned'}</strong>
+                              <small>{request.nurseMobile || 'Mobile not available'}</small>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <strong>{request.requestedByName || 'Unknown user'}</strong>
+                            <small>{request.requestedByMobile || 'Mobile not available'}</small>
+                          </div>
+                        </td>
+                        <td>
+                          <span className="completion-code">
+                            {request.completionCode || '—'}
+                          </span>
+                        </td>
+                        <td>
+                          <span className={`status ${(request.status || 'UNKNOWN').toLowerCase()}`}>
+                            {request.status || 'UNKNOWN'}
+                          </span>
+                        </td>
+                        <td>
+                          <strong>
+                            {request.requestedAt
+                              ? new Date(request.requestedAt).toLocaleString('en-IN')
+                              : '—'}
+                          </strong>
+                          <small>{request.patientName || 'Patient not provided'}</small>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              {!filteredRequests.length && (
+                <div className="empty-state">
+                  No nurse service requests match the selected filters.
+                </div>
+              )}
             </div>
           )}
         </div>
