@@ -116,15 +116,36 @@ function AdminDashboard({ onExit }) {
     setDocLoading(true);
 
     try {
-      setDocs(
-        await authFetch(
-          `/api/admin/professionals/${professional.professionalId}/documents`
-        )
-      );
+      const [details, documents] = await Promise.all([
+        authFetch(`/api/admin/professionals/${professional.professionalId}`),
+        authFetch(`/api/admin/professionals/${professional.professionalId}/documents`)
+      ]);
+      let registrationDetails = {};
+      if (details.registrationDetailsJson) {
+        try { registrationDetails = JSON.parse(details.registrationDetailsJson); }
+        catch { registrationDetails = { registrationDetails: details.registrationDetailsJson }; }
+      }
+      setSelected({ ...professional, ...details, registrationDetails });
+      setDocs(documents);
     } catch (e) {
       setError(e.message);
     } finally {
       setDocLoading(false);
+    }
+  };
+
+  const openDocument = async (document) => {
+    try {
+      const response = await fetch(`${API_BASE}${document.downloadUrl}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (!response.ok) throw new Error((await response.text()) || 'Unable to open document');
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank', 'noopener,noreferrer');
+      window.setTimeout(() => URL.revokeObjectURL(url), 60000);
+    } catch (e) {
+      setError(e.message);
     }
   };
 
@@ -799,8 +820,21 @@ function AdminDashboard({ onExit }) {
               <div><span>Registration no.</span><strong>{selected.registrationNumber || '—'}</strong></div>
               <div><span>Service area</span><strong>{selected.serviceArea || '—'}</strong></div>
               <div><span>Experience</span><strong>{selected.experienceYears ?? 0} years</strong></div>
+              <div><span>Age</span><strong>{selected.age ?? '—'}</strong></div>
+              <div><span>Email</span><strong>{selected.email || '—'}</strong></div>
+              <div><span>Registered</span><strong>{selected.registeredAt ? new Date(selected.registeredAt).toLocaleString('en-IN') : '—'}</strong></div>
               <div><span>Mobile verification</span><strong>{selected.mobileVerified ? 'Verified' : 'Not verified'}</strong></div>
             </div>
+            {selected.registrationDetails && Object.keys(selected.registrationDetails).length > 0 && (
+              <div className="registration-extra-details">
+                <div className="panel-title"><div><span>Submitted registration form</span><h3>Additional details</h3></div></div>
+                <div className="detail-grid">
+                  {Object.entries(selected.registrationDetails).map(([key, value]) => (
+                    <div key={key}><span>{key.replace(/([A-Z])/g, ' $1').replace(/[_-]/g, ' ')}</span><strong>{value == null || value === '' ? '—' : typeof value === 'object' ? JSON.stringify(value) : String(value)}</strong></div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="documents-box">
               <div className="panel-title">
@@ -815,12 +849,11 @@ function AdminDashboard({ onExit }) {
                 <p>Loading documents…</p>
               ) : docs.length ? (
                 docs.map((d) => (
-                  <a
-                    className="document-row"
+                  <button
+                    type="button"
+                    className="document-row document-row-button"
                     key={d.id}
-                    href={`${API_BASE}${d.downloadUrl}`}
-                    target="_blank"
-                    rel="noreferrer"
+                    onClick={() => openDocument(d)}
                   >
                     <Icon name="file" size={18} />
                     <span>
@@ -828,7 +861,7 @@ function AdminDashboard({ onExit }) {
                       <small>{d.fileName} · {(d.size / 1024 / 1024).toFixed(2)} MB</small>
                     </span>
                     <Icon name="arrow" size={16} />
-                  </a>
+                  </button>
                 ))
               ) : (
                 <div className="empty-state">

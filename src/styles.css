@@ -202,3 +202,5 @@
     width: 100%;
   }
 }
+
+.document-row-button{width:100%;text-align:left;background:transparent;border:0;cursor:pointer;font:inherit}.document-row-button:hover{background:#f1fafc}.registration-extra-details{margin:16px 0}.registration-extra-details .panel-title{margin-bottom:8px}
