@@ -62,6 +62,7 @@ function HomePage({ onOpenAdmin }) {
             <Icon name={menuOpen ? 'close' : 'menu'} size={26} />
           </button>
           <div className={`nav-menu ${menuOpen ? 'open' : ''}`}>
+            <button onClick={() => { window.location.hash = '/'; }}>Group Home</button>
             <button onClick={() => go('home')}>Home</button>
             <button onClick={() => go('about')}>About</button>
             <button onClick={() => go('products')}>Products</button>

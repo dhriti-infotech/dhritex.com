@@ -1,19 +1,24 @@
-# Dhriti Infotech — dhritex.com
+# Dhriti Group of Industries — dhritex.com
 
-React + Vite company website for Dhriti Infotech, adapted from the supplied Hopewell template structure and restyled to match the dhritex.com logo palette.
+React + Vite corporate website with a parent-company homepage and dedicated business division pages.
 
-## Included sections
+## Website structure
 
-- Home / hero
-- Company overview
-- Products — CareNow
-- CareNow user, professional and login screenshots
-- Clients — Freshzo
-- Leadership — Roshan and Jyoti
-- Contact details
-- Floating WhatsApp and email actions
-- Responsive mobile navigation
-- Responsive layouts for desktop, tablet and mobile
+- `#/` — Dhriti Group of Industries corporate homepage
+- `#/infotech` — Dhriti Infotech software products and services (existing CareNow product showcase retained)
+- `#/retails` — Dhriti Retails product portfolio
+- `#/retails#avira` — Avira by Dhritex product section (brand jump link)
+- `#/retails#ecoserve` — EcoServe by Dhritex product section (brand jump link)
+- `#/admin` — Existing admin dashboard
+
+## Included
+
+- Parent-company-first corporate homepage
+- Responsive navigation and distinct Infotech / Retails routes
+- Dhriti Infotech page with existing CareNow showcase and existing website content
+- Dhriti Retails page with Avira packaged drinking water and EcoServe single-use crockery sections
+- Contact links for business and partnership enquiries
+- Responsive desktop, tablet and mobile styles
 
 ## Run locally
 
@@ -21,8 +26,6 @@ React + Vite company website for Dhriti Infotech, adapted from the supplied Hope
 npm install
 npm run dev
 ```
-
-Then open the local URL printed by Vite.
 
 ## Production build
 
@@ -33,15 +36,14 @@ npm run preview
 
 ## Deploy
 
-The project is Vite-compatible and can be deployed to GitHub Pages, Netlify, Vercel, Cloudflare Pages or any static hosting provider.
+The project is Vite-compatible and can be deployed to GitHub Pages, Netlify, Vercel, Cloudflare Pages or other static hosting. This site uses hash-based routes, so the division pages work on static hosting without server rewrite rules.
 
-## Contact details configured
+## Important launch note
 
-- Phone: +91 9472501328
+Avira and EcoServe are presented as brand/product concepts. Confirm product specifications, certifications, claims, manufacturing arrangements and regulatory approvals before publishing specific claims or launching products. Dhriti Group of Industries should not be represented as an incorporated legal entity unless and until registered.
+
+## Contact details currently configured
+
+- Phone: +91 9472501328 (existing Infotech page)
 - Email: infotech.dhriti@gmail.com
-- Address: Hitech City, Hyderabad, Telangana, India
-- WhatsApp: https://wa.me/919472501328
-
-## Template note
-
-The supplied Hopewell template was used as the visual/layout reference. The original template's README identifies it as MIT licensed and credits K29Solutions / ThemeWagon. The Dhriti Infotech implementation replaces the charity content with company/product content and uses the supplied dhritex.com logo and CareNow screenshots.
+- Address: Hitech City, Hyderabad, Telangana, India (existing Infotech page)
