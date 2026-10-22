@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Icon from '../components/Icon';
 import { SITE_CONFIG } from '../config';
+import PaymentSettings from './PaymentSettings';
 
 const logo = SITE_CONFIG.logo;
 const API_BASE = SITE_CONFIG.apiBaseUrl;
@@ -344,6 +345,12 @@ function AdminDashboard({ onExit }) {
             >
               <Icon name="chart" size={18} /> Service Requests
             </button>
+            <button
+              className={activeView === 'payments' ? 'active' : ''}
+              onClick={() => goToView('payments')}
+            >
+              <Icon name="shield" size={18} /> Payment Settings
+            </button>
           </div>
 
           <div className="admin-nav-group">
@@ -406,6 +413,7 @@ function AdminDashboard({ onExit }) {
                 {activeView === 'professionals' && 'Professional directory'}
                 {activeView === 'users' && 'Registered users'}
                 {activeView === 'requests' && 'Service requests'}
+                {activeView === 'payments' && 'Payment settings'}
               </h1>
               <p>
                 {activeView === 'overview' &&
@@ -416,6 +424,8 @@ function AdminDashboard({ onExit }) {
                   'View all registered CareNow users and their account details.'}
                 {activeView === 'requests' &&
                   'Review all nurse service requests, requester details, completion codes and current status.'}
+                {activeView === 'payments' &&
+                  'Configure static UPI QR payments and verify manual platform-fee settlements.'}
               </p>
             </div>
             <div className="admin-heading-meta">
@@ -798,6 +808,10 @@ function AdminDashboard({ onExit }) {
                 </div>
               )}
             </div>
+          )}
+
+          {activeView === 'payments' && (
+            <PaymentSettings authFetch={authFetch} apiBase={API_BASE} />
           )}
         </div>
       </main>

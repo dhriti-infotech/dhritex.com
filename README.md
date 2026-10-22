@@ -1,24 +1,19 @@
-# Dhriti Group of Industries — dhritex.com
+# Dhriti Infotech — dhritex.com
 
-React + Vite corporate website with a parent-company homepage and dedicated business division pages.
+React + Vite company website for Dhriti Infotech, adapted from the supplied Hopewell template structure and restyled to match the dhritex.com logo palette.
 
-## Website structure
+## Included sections
 
-- `#/` — Dhriti Group of Industries corporate homepage
-- `#/infotech` — Dhriti Infotech software products and services (existing CareNow product showcase retained)
-- `#/retails` — Dhriti Retails product portfolio
-- `#/retails#avira` — Avira by Dhritex product section (brand jump link)
-- `#/retails#ecoserve` — EcoServe by Dhritex product section (brand jump link)
-- `#/admin` — Existing admin dashboard
-
-## Included
-
-- Parent-company-first corporate homepage
-- Responsive navigation and distinct Infotech / Retails routes
-- Dhriti Infotech page with existing CareNow showcase and existing website content
-- Dhriti Retails page with Avira packaged drinking water and EcoServe single-use crockery sections
-- Contact links for business and partnership enquiries
-- Responsive desktop, tablet and mobile styles
+- Home / hero
+- Company overview
+- Products — CareNow
+- CareNow user, professional and login screenshots
+- Clients — Freshzo
+- Leadership — Roshan and Jyoti
+- Contact details
+- Floating WhatsApp and email actions
+- Responsive mobile navigation
+- Responsive layouts for desktop, tablet and mobile
 
 ## Run locally
 
@@ -26,6 +21,8 @@ React + Vite corporate website with a parent-company homepage and dedicated busi
 npm install
 npm run dev
 ```
+
+Then open the local URL printed by Vite.
 
 ## Production build
 
@@ -36,14 +33,43 @@ npm run preview
 
 ## Deploy
 
-The project is Vite-compatible and can be deployed to GitHub Pages, Netlify, Vercel, Cloudflare Pages or other static hosting. This site uses hash-based routes, so the division pages work on static hosting without server rewrite rules.
+The project is Vite-compatible and can be deployed to GitHub Pages, Netlify, Vercel, Cloudflare Pages or any static hosting provider.
 
-## Important launch note
+## Contact details configured
 
-Avira and EcoServe are presented as brand/product concepts. Confirm product specifications, certifications, claims, manufacturing arrangements and regulatory approvals before publishing specific claims or launching products. Dhriti Group of Industries should not be represented as an incorporated legal entity unless and until registered.
-
-## Contact details currently configured
-
-- Phone: +91 9472501328 (existing Infotech page)
+- Phone: +91 9472501328
 - Email: infotech.dhriti@gmail.com
-- Address: Hitech City, Hyderabad, Telangana, India (existing Infotech page)
+- Address: Hitech City, Hyderabad, Telangana, India
+- WhatsApp: https://wa.me/919472501328
+
+## Template note
+
+The supplied Hopewell template was used as the visual/layout reference. The original template's README identifies it as MIT licensed and credits K29Solutions / ThemeWagon. The Dhriti Infotech implementation replaces the charity content with company/product content and uses the supplied dhritex.com logo and CareNow screenshots.
+
+
+## Admin Console — Payment Settings
+
+The admin console now includes **Payment Settings** in the sidebar. It uses the authenticated admin token already issued by `/api/admin/login`.
+
+### Static UPI QR
+- `GET /api/admin/payment-settings/static-qr` reads QR configuration.
+- `POST /api/admin/payment-settings/static-qr/image` uploads the selected image as multipart field `file`.
+- `PATCH /api/admin/payment-settings/static-qr/toggle?toggle_static_payment=YES|NO` enables or disables static QR payments.
+- PNG, JPEG and WebP files up to 2 MB are accepted by the UI; the backend must validate the actual image content as well.
+- Replacing the QR automatically disables the method; an administrator must explicitly enable it again.
+
+### Manual platform-fee verification
+- `GET /api/admin/payment-settings/manual-payments?status=PENDING` lists submissions for review.
+- `POST /api/admin/payment-settings/manual-payments/{id}/confirm` sends `transactionReference`, `verifiedAmount`, and optional `note`.
+- `POST /api/admin/payment-settings/manual-payments/{id}/reject` sends an optional `note`.
+- The administrator must verify receipt in the receiving bank/UPI account before confirming. A submitted reference or screenshot is not proof of funds received.
+
+### Configuration
+Set `VITE_API_BASE_URL` to the deployed backend URL when building the admin app (for example, `https://api.dhritex.com`). The current fallback in `src/config.js` remains `http://localhost:8082`.
+
+### Build and deploy
+```bash
+npm ci
+npm run build
+```
+The repository's GitHub Pages workflow builds `dist` from source. `node_modules` and stale build output are intentionally omitted from the source archive; dependencies are restored by `npm ci`.

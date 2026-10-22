@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import AdminDashboard from './pages/AdminDashboard';
 import HomePage from './pages/HomePage';
-import GroupHomePage from './pages/GroupHomePage';
-import RetailsPage from './pages/RetailsPage';
 
 function App() {
   const [route, setRoute] = useState(window.location.hash);
@@ -17,9 +15,7 @@ function App() {
   }, []);
 
   const openAdmin = () => {
-    // Open the admin console separately so the public website stays open.
-    const adminUrl = `${window.location.origin}${window.location.pathname}${window.location.search}#/admin`;
-    window.open(adminUrl, '_blank', 'noopener,noreferrer');
+    window.location.hash = '/admin';
   };
 
   const exitAdmin = () => {
@@ -30,14 +26,8 @@ function App() {
   if (route === '#/admin') {
     return <AdminDashboard onExit={exitAdmin} />;
   }
-  if (route.startsWith('#/infotech')) {
-    return <HomePage onOpenAdmin={openAdmin} />;
-  }
-  if (route.startsWith('#/retails')) {
-    return <RetailsPage />;
-  }
 
-  return <GroupHomePage />;
+  return <HomePage onOpenAdmin={openAdmin} />;
 }
 
 export default App;

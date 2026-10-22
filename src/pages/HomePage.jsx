@@ -62,7 +62,6 @@ function HomePage({ onOpenAdmin }) {
             <Icon name={menuOpen ? 'close' : 'menu'} size={26} />
           </button>
           <div className={`nav-menu ${menuOpen ? 'open' : ''}`}>
-            <button onClick={() => { window.location.hash = '/'; }}>Group Home</button>
             <button onClick={() => go('home')}>Home</button>
             <button onClick={() => go('about')}>About</button>
             <button onClick={() => go('products')}>Products</button>
@@ -84,7 +83,7 @@ function HomePage({ onOpenAdmin }) {
             <p>Dhriti Infotech is a Hyderabad-based technology company focused on scalable software, modern web experiences and practical digital products.</p>
             <div className="hero-actions">
               <button className="btn primary" onClick={() => go('products')}>Explore Our Products <Icon name="arrow" size={18} /></button>
-              <button className="btn outline" onClick={() => go('contact')}>Work With Us</button>
+              <button className="btn outline" onClick={() => go('contact')}>Work With Us</button><a className="btn primary" href="https://drive.google.com/uc?export=download&id=1SghimhPw56DQDdXp39RwKkP22tuiVh32" target="_blank" rel="noreferrer">Get CareNow Beta <Icon name="arrow" size={18} /></a>
             </div>
             <div className="hero-proof">
               <div className="proof-icon"><Icon name="code" size={21} /></div>
@@ -95,7 +94,7 @@ function HomePage({ onOpenAdmin }) {
             <div className="hero-screen-frame">
               <img src="/assets/carenow-user.jpg" alt="CareNow user app home screen" />
             </div>
-            <div className="float-card float-top"><div className="float-icon cyan"><Icon name="shield" size={21} /></div><div><strong>CareNow - Coming soon...</strong><span>Healthcare at your doorstep</span></div></div>
+            <div className="float-card float-top"><div className="float-icon cyan"><Icon name="shield" size={21} /></div><div><strong>CareNow — Beta Launched</strong><span>Download the Android beta and explore healthcare at your doorstep.</span></div></div>
             <div className="float-card float-bottom"><div className="float-icon navy"><Icon name="cloud" size={21} /></div><div><strong>Digital Solutions</strong><span>Currently in development</span></div></div>
           </div>
         </div>
@@ -138,7 +137,7 @@ function HomePage({ onOpenAdmin }) {
               <p className="product-lead">Healthcare at your doorstep.</p>
               <p>CareNow brings together nurse-at-home services, healthcare professionals, medicines and medical equipment in a simple mobile experience.</p>
               <div className="tag-row"><span>React Native</span><span>Spring Boot</span><span>Location</span><span>Cloud Ready</span></div>
-              <button className="btn primary" onClick={() => go('contact')}>Discuss the Product <Icon name="arrow" size={18} /></button>
+              <div className="hero-actions product-download-actions"><a className="btn primary" href="https://drive.google.com/uc?export=download&id=1SghimhPw56DQDdXp39RwKkP22tuiVh32" target="_blank" rel="noreferrer">Download Android Beta <Icon name="arrow" size={18} /></a><button className="btn outline" onClick={() => go('contact')}>Discuss the Product</button></div>
             </div>
             <div className="screens-panel">
               <div className="screen-tabs">
