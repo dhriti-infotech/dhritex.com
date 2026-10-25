@@ -63,7 +63,26 @@ function CareNowPage({ onOpenAdmin }) {
       <div className="screenshot-heading"><div><span className="directory-kicker">Inside the app</span><h3>Professional app screenshots</h3></div><p>Frames selected from the uploaded demo video.</p></div><div className="care-screenshot-grid">{professionalShots.map(([title,src,desc])=><article className="care-shot" key={title}><img src={src} alt={title}/><div><h4>{title}</h4><p>{desc}</p></div></article>)}</div>
     </div></section>
     <section className="care-trust section alt"><div className="container care-trust-grid"><div><span className="eyebrow">Trust &amp; transparency</span><h2>Care that starts with clear information.</h2><p>CareNow is designed to support the connection between patients and eligible healthcare professionals. Professional approval is subject to document review and platform requirements. Service availability, response times and tracking depend on the service and operational status.</p></div><div className="trust-note"><Icon name="alert-circle" size={25}/><div><h3>Need emergency medical help?</h3><p>CareNow is not an emergency response service. If someone may be experiencing a medical emergency, contact local emergency services immediately.</p></div></div></div></section>
-    <section className="care-faq section"><div className="container"><div className="section-heading center"><span className="eyebrow">FAQs</span><h2>Good to know</h2></div><div className="faq-grid"><article><h3>Does submitting a request confirm a booking?</h3><p>Not necessarily. A request may need to be reviewed or accepted, and depends on professional availability.</p></article><article><h3>Who can register as a professional?</h3><p>Eligible professionals must provide the credentials required by CareNow and complete the platform's review process.</p></article><article><h3>Are service prices fixed?</h3><p>Review the price and terms shown in the app for the selected service before submitting your request.</p></article><article><h3>How can I get support?</h3><p>Contact Dhriti Infotech using the contact details below for product and platform enquiries.</p></article></div><div className="care-final-cta"><div><h2>Explore CareNow for yourself.</h2><p>Review the demo, then continue to the available app download.</p></div><a className="btn primary" href="https://drive.google.com/uc?export=download&confirm=t&id=1SghimhPw56DQDdXp39RwKkP22tuiVh32"><Icon name="android" size={19}/> Download CareNow</a></div></div></section>
+    <section className="care-faq section"><div className="container"><div className="section-heading center"><span className="eyebrow">FAQs</span><h2>Good to know</h2></div><div className="faq-grid"><article><h3>Does submitting a request confirm a booking?</h3><p>Not necessarily. A request may need to be reviewed or accepted, and depends on professional availability.</p></article><article><h3>Who can register as a professional?</h3><p>Eligible professionals must provide the credentials required by CareNow and complete the platform's review process.</p></article><article><h3>Are service prices fixed?</h3><p>Review the price and terms shown in the app for the selected service before submitting your request.</p></article><article><h3>How can I get support?</h3><p>Contact Dhriti Infotech using the contact details below for product and platform enquiries.</p></article></div><div className="care-final-cta"><div><h2>Explore CareNow for yourself.</h2><p>Review the demo, then continue to the available app download.</p></div>
+    {/* <a className="btn primary" href="https://drive.google.com/uc?export=download&confirm=t&id=1SghimhPw56DQDdXp39RwKkP22tuiVh32"><Icon name="android" size={19}/>
+     Download CareNow
+     </a> */}
+
+      <a
+        className="nav-download"
+        href="https://github.com/dhriti-infotech/dhritex.com/releases/latest/download/carenow-beta.apk"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Download CareNow Android beta APK"
+      >
+        <span className="android-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor">
+            <path d="M7.1 5.2 5.8 3.3a.5.5 0 0 1 .8-.6L8 4.7a8.7 8.7 0 0 1 8 0l1.4-2a.5.5 0 0 1 .8.6l-1.3 1.9A7.8 7.8 0 0 1 20 11H4a7.8 7.8 0 0 1 3.1-5.8ZM7 12h10v6.2a1.8 1.8 0 0 1-1.8 1.8h-.7v2a1 1 0 0 1-2 0v-2h-2v2a1 1 0 0 1-2 0v-2h-.7A1.8 1.8 0 0 1 7 18.2V12ZM4 12h2v5.5a1 1 0 0 1-2 0V12Zm14 0h2v5.5a1 1 0 0 1-2 0V12Z" />
+          </svg>
+        </span>
+        <span>Download CareNow</span>
+      </a>
+     </div></div></section>
     <footer className="footer"><div className="container footer-grid"><div><img className="footer-logo" src={SITE_CONFIG.logo} alt="dhritex.com"/><p>CareNow is a Dhriti Infotech product designed to bring home healthcare closer to you.</p></div><div><h4>CareNow</h4><a href="#patient-guide">Patient guide</a><a href="#professional-guide">Professional guide</a><a href="#top">Back to top</a></div><div><h4>Contact &amp; support</h4><a href="tel:+919472501328">+91 9472501328</a><a href="mailto:infotech.dhriti@gmail.com">infotech.dhriti@gmail.com</a><a href="https://dhritex.com">dhritex.com</a></div></div><div className="container footer-bottom"><span>© 2026 Dhriti Infotech. All rights reserved.</span><a href="#/">All products</a></div></footer>
   </div>;
 }
