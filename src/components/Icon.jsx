@@ -3,6 +3,12 @@ import React from 'react';
 function Icon({ name, size = 22 }) {
   const paths = {
     arrow: <><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></>,
+    home: <><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></>,
+    info: <><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></>,
+    grid: <><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></>,
+    terminal: <><path d="m4 17 6-5-6-5"/><path d="M12 19h8"/></>,
+    android: <><path d="M7 8 5 5M17 8l2-3"/><path d="M5 10a7 7 0 0 1 14 0Z"/><path d="M5 10v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/><path d="M9 18v3m6-3v3M2 11v5m20-5v5"/></>,
+    users: <><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></>,
     chevron: <path d="m9 18 6-6-6-6"/>,
     menu: <><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></>,
     close: <><path d="m6 6 12 12"/><path d="m18 6-12 12"/></>,

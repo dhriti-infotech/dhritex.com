@@ -275,3 +275,189 @@
 .payment-reviewed-at{display:block;color:var(--muted);font-size:.72rem;margin-top:12px}
 @media(max-width:1200px){.payment-settings-grid{grid-template-columns:1fr}.payment-qr-panel{max-width:none}}
 @media(max-width:650px){.payment-settings-intro{flex-direction:column}.payment-settings-grid .admin-panel{padding:17px}.payment-qr-preview{min-height:220px}.payment-review-form{grid-template-columns:1fr}.payment-review-form label:nth-child(3),.payment-review-actions,.payment-review-warning{grid-column:1}.payment-review-actions .btn{width:100%}.payment-queue-controls{align-items:flex-start;flex-direction:column}.payment-queue-controls select{max-width:none}.payment-submission-details{gap:10px}}
+
+/* CareNow Android beta header download CTA */
+.nav-download{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-left:8px;padding:11px 16px;border-radius:999px;background:#16834a;color:#fff!important;text-decoration:none;font:600 .88rem Poppins,sans-serif;white-space:nowrap;box-shadow:0 8px 20px -12px rgba(22,131,74,.7);transition:transform .2s,box-shadow .2s}.nav-download:hover{transform:translateY(-2px);box-shadow:0 12px 24px -12px rgba(22,131,74,.75)}.android-mark{display:inline-flex;align-items:center;justify-content:center}
+@media(max-width:1000px){.nav-download{margin:5px 8px;padding:11px 14px}}
+@media(max-width:760px){.nav-download{width:100%;margin:5px 0;text-align:center;box-sizing:border-box;justify-content:center}.nav-menu .nav-download{text-align:center}}
+
+/* Header refinement: compact CTA and icon-supported navigation */
+.nav-menu button:not(.nav-cta){display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 10px;font-size:.84rem;white-space:nowrap}
+.nav-menu button:not(.nav-cta)::after{left:10px;right:10px}
+.nav-menu button:not(.nav-cta) svg{flex:0 0 auto;color:var(--cyan)}
+.nav-menu .nav-admin-icon{width:38px;height:38px;padding:0!important;border:1px solid var(--line);border-radius:11px;color:var(--navy);background:#f7fbfc; margin-left:4px}
+.nav-menu .nav-admin-icon::after{display:none}
+.nav-menu .nav-admin-icon:hover{background:#eaf8fa;border-color:#bce9ef}
+.nav-menu .nav-cta{margin-left:6px;padding:10px 15px!important;font-size:.84rem;border-radius:18px;white-space:nowrap;box-shadow:0 8px 22px -16px rgba(1,170,195,.6)}
+.nav-cta svg{width:15px;height:15px}
+@media(max-width:1100px){.nav-inner{gap:15px}.brand img{width:150px}.nav-menu button:not(.nav-cta){padding:8px 7px;font-size:.77rem;gap:4px}.nav-menu button:not(.nav-cta)::after{left:7px;right:7px}.nav-menu .nav-cta{padding:9px 12px!important;font-size:.78rem}}
+@media(max-width:760px){.nav-menu button:not(.nav-cta){justify-content:flex-start;padding:11px 13px!important;font-size:.9rem;gap:10px}.nav-menu button:not(.nav-cta)::after{display:none}.nav-menu .nav-admin-icon{width:100%;height:auto;justify-content:flex-start;border:0;background:transparent;border-radius:0;margin:0;padding:11px 13px!important}.nav-menu .nav-admin-icon::after{display:none}.nav-menu .nav-cta{margin:6px 0 0;padding:11px 14px!important;font-size:.9rem;border-radius:14px}.nav-menu .nav-download{margin:5px 0;padding:11px 14px}}
+
+/* CareNow APK release publishing in the admin console */
+.carenow-release-panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:clamp(18px,3vw,30px);box-shadow:0 14px 36px -32px rgba(2,59,92,.35)}
+.carenow-release-panel .panel-heading{display:flex;justify-content:space-between;gap:20px;margin-bottom:24px}
+.carenow-release-panel .panel-heading h2{margin:8px 0;color:var(--navy);font:800 1.35rem/1.2 Poppins,sans-serif}
+.carenow-release-panel .panel-heading p{margin:0;max-width:700px;color:var(--muted);font-size:.84rem;line-height:1.65}
+.release-upload-form{display:grid;grid-template-columns:minmax(240px,.85fr) minmax(280px,1.15fr);gap:22px;align-items:start}
+.release-file-drop{min-height:245px;padding:26px 18px;border:1.5px dashed #a9cbd3;border-radius:16px;background:#f5fcfd;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;color:var(--navy);cursor:pointer}
+.release-file-drop svg{color:var(--cyan)}.release-file-drop strong{font-size:.92rem;overflow-wrap:anywhere}.release-file-drop span{font-size:.72rem;color:var(--muted)}.release-file-drop input{max-width:100%;font-size:.75rem;margin-top:7px}
+.release-form-fields{display:grid;gap:16px}.release-form-fields label{display:grid;gap:7px;color:var(--navy);font-size:.78rem;font-weight:700}.release-form-fields input,.release-form-fields textarea{width:100%;border:1px solid #d7e4e9;border-radius:10px;padding:12px 13px;color:var(--navy);font:500 .83rem Poppins,sans-serif;outline:none;background:#fff}.release-form-fields input:focus,.release-form-fields textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #00a7b71a}.release-form-fields textarea{resize:vertical;min-height:110px}
+.release-upload-actions{grid-column:1/-1;display:flex;align-items:center;gap:16px;flex-wrap:wrap}.release-upload-actions .btn{border:0;border-radius:10px;padding:12px 18px;background:var(--cyan);color:white;font:700 .78rem Poppins,sans-serif;cursor:pointer}.release-upload-actions .btn:disabled{opacity:.6;cursor:wait}.release-upload-actions small{color:var(--muted);font-size:.7rem}.release-success{margin-top:22px;padding:16px 18px;border:1px solid #b8e6cc;border-radius:12px;background:#f1fff6;display:grid;gap:7px;color:#17683b;font-size:.82rem}.release-success a{width:fit-content;color:#087b9a;font-weight:700}.release-info-note{margin-top:20px;padding:14px 16px;border-radius:12px;background:#f7f9fb;color:#536774;font-size:.76rem;line-height:1.7}.release-info-note p{margin:5px 0 0}.release-info-note code{overflow-wrap:anywhere;background:#eaf0f3;padding:2px 4px;border-radius:4px}
+@media(max-width:760px){.release-upload-form{grid-template-columns:1fr}.release-file-drop{min-height:190px}.release-upload-actions{align-items:flex-start;flex-direction:column}.carenow-release-panel{padding:17px}}
+
+/* Real-time CareNow APK upload progress */
+.release-progress-wrap{grid-column:1/-1;width:100%;padding:16px 18px;border:1px solid #d8e9ed;border-radius:14px;background:#f5fcfd}
+.release-progress-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;color:var(--navy);font-size:.86rem;flex-wrap:wrap}
+.release-progress-heading span{color:var(--muted);font-size:.78rem;font-variant-numeric:tabular-nums}
+.release-progress-track{height:12px;width:100%;overflow:hidden;border-radius:999px;background:#dcebef;box-shadow:inset 0 1px 2px rgba(2,59,92,.08)}
+.release-progress-fill{height:100%;border-radius:inherit;background:linear-gradient(90deg,#0c9f86,#79c9d8);transition:width .12s linear}
+.release-progress-wrap>small{display:block;margin-top:9px;color:var(--muted);font-size:.75rem;line-height:1.5}
+@media(prefers-reduced-motion:reduce){.release-progress-fill{transition:none}}
+
+/* Product directory and CareNow product page */
+.product-home-hero{min-height:690px}
+.product-hero-art{min-height:500px;position:relative;display:flex;align-items:center;justify-content:center}
+.hero-product-tile{position:absolute;border-radius:30px;background:#fff;border:1px solid rgba(255,255,255,.8);box-shadow:0 30px 80px -35px rgba(2,59,92,.35);display:grid;place-items:center;overflow:hidden}
+.hero-product-tile img{width:100%;height:100%;object-fit:contain}
+.care-tile{width:360px;height:255px;top:40px;left:2%;transform:rotate(-5deg);padding:12px}
+.baskit-tile{width:290px;height:300px;right:0;bottom:20px;transform:rotate(5deg);padding:8px;background:#fffdf6}
+.orbit{position:absolute;border:1px solid rgba(1,170,195,.22);border-radius:50%}.orbit-one{width:470px;height:470px}.orbit-two{width:360px;height:360px;border-style:dashed}
+.product-directory{background:#f8fcfd}
+.product-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px;margin-top:50px}
+.directory-card{position:relative;overflow:hidden;display:grid;grid-template-columns:150px 1fr;gap:25px;padding:30px;border:1px solid var(--line);border-radius:27px;background:#fff;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
+.directory-card:hover{transform:translateY(-5px);box-shadow:0 28px 55px -32px rgba(2,59,92,.4)}
+.directory-logo{height:150px;width:150px;border-radius:24px;display:grid;place-items:center;overflow:hidden}
+.care-logo{background:#f2fbfc}.care-logo img{width:100%;height:100%;object-fit:contain}
+.baskit-logo{background:#fff9e9}.baskit-logo img{width:100%;height:100%;object-fit:contain}
+.directory-body{position:relative;z-index:1}.directory-kicker{color:var(--cyan);font:700 .73rem Poppins,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.directory-body h3{font:800 2rem Poppins,sans-serif;color:var(--navy);margin:6px 0}
+.directory-body p{font-size:.92rem;color:var(--muted);margin:0 0 17px}
+.directory-tags{display:flex;gap:7px;flex-wrap:wrap;margin:17px 0 23px}
+.directory-tags span{background:#eff9fa;color:var(--navy);padding:5px 9px;border-radius:99px;font-size:.72rem;font-weight:800}
+.directory-number{position:absolute;right:20px;top:8px;color:#edf4f6;font:800 3rem Poppins,sans-serif}
+.coming-soon{display:flex;align-items:center;gap:8px;font-weight:800;color:#8b5a08;margin:20px 0 23px}
+.coming-dot{width:9px;height:9px;border-radius:50%;background:#f2b84b;box-shadow:0 0 0 5px #fff3d5}
+.simple-heading{font:800 clamp(2rem,3.5vw,3rem)/1.15 Poppins,sans-serif;letter-spacing:-.035em;color:var(--navy)}
+.muted-large{font-size:1.08rem;color:var(--muted)}
+.care-navbar .nav-inner{gap:18px}.care-brand img{width:150px}
+.care-nav-product{height:43px;flex:1;display:flex;justify-content:center;align-items:center}
+.care-nav-product img{height:40px;max-width:190px;object-fit:contain}
+.care-nav-actions{display:flex;align-items:center;gap:12px}
+.nav-care-download{padding:11px 17px;font-size:.8rem}
+.care-admin-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:#fff;color:var(--navy);transition:.2s}
+.care-admin-btn:hover{background:var(--navy);color:#fff}
+.care-hero{padding:150px 0 95px;background:linear-gradient(135deg,#eefbfc 0%,#f8fcfd 53%,#eaf8fa 100%);position:relative;overflow:hidden}
+.care-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:55px}
+.care-hero h1{font:800 clamp(2.8rem,5vw,4.8rem)/1.06 Poppins,sans-serif;letter-spacing:-.05em;color:var(--text);margin:24px 0}
+.care-hero h1 span{color:var(--cyan)}
+.care-hero-copy>p{font-size:1.1rem;color:var(--muted);max-width:650px}
+.care-hero-note{display:flex;align-items:flex-start;gap:10px;margin-top:28px;color:var(--muted);font-size:.82rem;max-width:560px}
+.care-hero-note svg{flex-shrink:0;color:var(--cyan);margin-top:3px}
+.care-hero-logo{position:relative;min-height:390px;display:grid;place-items:center}
+.care-logo-glow{position:absolute;width:360px;height:360px;border-radius:50%;background:rgba(1,170,195,.09);filter:blur(2px)}
+.care-hero-logo>img{position:relative;width:min(100%,420px);max-height:340px;object-fit:contain;filter:drop-shadow(0 24px 35px rgba(2,59,92,.12))}
+.care-mini-badge{position:absolute;bottom:8px;right:0;display:flex;align-items:center;gap:9px;background:white;border:1px solid var(--line);box-shadow:var(--shadow);padding:13px 16px;border-radius:14px;color:var(--navy);font-weight:800;font-size:.82rem}
+.care-mini-badge svg{color:var(--cyan)}
+.care-problem{background:#fff}
+.care-value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:42px}
+.care-value-grid article{border:1px solid var(--line);border-radius:22px;padding:27px;background:#fff;box-shadow:0 16px 40px -30px rgba(2,59,92,.3)}
+.care-value-icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:var(--cyan-soft);color:var(--cyan)}
+.care-value-grid h3,.care-steps h3,.professional-benefits h3,.faq-grid h3{font:700 1.04rem Poppins,sans-serif;color:var(--navy);margin:17px 0 8px}
+.care-value-grid p,.care-steps p,.professional-benefits p,.faq-grid p{color:var(--muted);font-size:.9rem;margin:0}
+.care-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:35px 0 55px}
+.care-steps article{border-top:3px solid var(--cyan);background:white;border-radius:0 0 16px 16px;padding:19px 16px;box-shadow:0 15px 35px -32px rgba(2,59,92,.4)}
+.care-steps b{font:800 1.2rem Poppins,sans-serif;color:var(--cyan)}
+.care-steps h3{font-size:.92rem;margin:12px 0 7px}
+.demo-panel{display:grid;grid-template-columns:.75fr 1.25fr;align-items:center;gap:35px;background:#f1fafb;border:1px solid #d9eff2;border-radius:26px;padding:28px;margin:30px 0 45px}
+.demo-copy h3,.screenshot-heading h3{font:800 1.65rem Poppins,sans-serif;color:var(--navy);margin:8px 0}
+.demo-copy p,.screenshot-heading p{color:var(--muted);font-size:.9rem}
+.demo-panel video{width:100%;max-height:470px;background:#0a2535;border-radius:17px;box-shadow:0 20px 45px -30px rgba(0,0,0,.4)}
+.text-link{display:inline-flex;align-items:center;gap:8px;color:var(--cyan);font-weight:800;margin-top:10px}
+.screenshot-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:35px 0 20px}
+.care-screenshot-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.care-shot{border:1px solid var(--line);background:white;border-radius:19px;overflow:hidden;box-shadow:0 16px 35px -30px rgba(2,59,92,.45)}
+.care-shot>img{width:100%;height:260px;object-fit:contain;object-position:center top;background:#f3f8fa;padding:9px}
+.care-shot>div{padding:16px}
+.care-shot h4{font:700 .95rem Poppins,sans-serif;color:var(--navy);margin:0 0 7px}
+.care-shot p{font-size:.8rem;color:var(--muted);margin:0}
+.professional-benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:35px 0}
+.professional-benefits article{display:flex;gap:16px;padding:22px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.professional-benefits article>svg{flex-shrink:0;color:var(--cyan);margin-top:4px}
+.professional-benefits h3{margin:0 0 7px}
+.professional-demo{background:#f6f8fc;border-color:#e2e9f1}
+.care-trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.care-trust h2{font:800 clamp(2rem,3.3vw,2.9rem)/1.15 Poppins,sans-serif;color:var(--navy);margin:18px 0}
+.care-trust-grid>div>p{color:var(--muted)}
+.trust-note{display:flex;gap:15px;background:#fff6e6;border:1px solid #f6dfb0;padding:24px;border-radius:20px;color:#81550a}
+.trust-note svg{flex-shrink:0}.trust-note h3{font:700 1rem Poppins,sans-serif;margin:0 0 8px}.trust-note p{margin:0;font-size:.9rem}
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:38px}
+.faq-grid article{border:1px solid var(--line);border-radius:17px;padding:22px;background:white}
+.faq-grid h3{margin:0 0 9px}
+.care-final-cta{margin-top:55px;border-radius:25px;padding:30px 35px;background:linear-gradient(120deg,var(--navy),#087c91);display:flex;justify-content:space-between;align-items:center;gap:25px;color:white}
+.care-final-cta h2{font:800 1.7rem Poppins,sans-serif;margin:0 0 5px}.care-final-cta p{margin:0;color:#d6f2f5}
+.care-final-cta .btn{background:white;color:var(--navy);box-shadow:none;white-space:nowrap}
+.carenow-site .footer{margin-top:0}
+@media(max-width:1050px){.product-cards{grid-template-columns:1fr}.care-steps{grid-template-columns:repeat(3,1fr)}.care-screenshot-grid{grid-template-columns:repeat(2,1fr)}.care-shot>img{height:320px}.care-hero-grid{gap:25px}.care-hero-logo>img{max-width:350px}}
+@media(max-width:760px){.product-home-hero{padding-top:130px}.product-hero-art{min-height:380px}.care-tile{width:270px;height:190px;left:0;top:20px}.baskit-tile{width:220px;height:230px;right:0;bottom:0}.orbit-one{width:330px;height:330px}.orbit-two{width:260px;height:260px}.directory-card{grid-template-columns:1fr;padding:23px;gap:18px}.directory-logo{width:125px;height:125px}.directory-body h3{font-size:1.8rem}.care-navbar .nav-inner{gap:8px}.care-brand img{width:105px}.care-nav-product{display:none}.care-nav-actions{margin-left:auto;gap:7px}.nav-care-download{font-size:.72rem;padding:10px 12px}.care-admin-btn{width:40px;height:40px}.care-hero{padding:125px 0 65px}.care-hero-grid{grid-template-columns:1fr}.care-hero-logo{min-height:280px;grid-row:1}.care-hero-logo>img{max-height:250px;max-width:310px}.care-logo-glow{width:250px;height:250px}.care-mini-badge{right:5px;bottom:0}.care-hero h1{font-size:clamp(2.5rem,11vw,3.5rem);margin:18px 0}.care-value-grid{grid-template-columns:1fr}.care-steps{grid-template-columns:1fr 1fr}.demo-panel{grid-template-columns:1fr;padding:20px;gap:18px}.demo-panel video{max-height:350px}.screenshot-heading{display:block}.care-shot>img{height:240px}.professional-benefits{grid-template-columns:1fr}.care-trust-grid{grid-template-columns:1fr}.faq-grid{grid-template-columns:1fr}.care-final-cta{display:block;padding:25px}.care-final-cta .btn{margin-top:20px}.section{padding:72px 0}}
+@media(max-width:460px){.care-steps{grid-template-columns:1fr}.care-screenshot-grid{grid-template-columns:1fr 1fr;gap:10px}.care-shot>img{height:190px}.care-shot>div{padding:12px}.care-shot h4{font-size:.84rem}.care-shot p{font-size:.75rem}.nav-care-download{font-size:0;gap:0;width:42px;height:42px;padding:0}.nav-care-download svg{width:19px;height:19px}.directory-card{padding:20px}.care-mini-badge{font-size:.7rem}}
+
+/* CareNow product page — Trustbees-inspired split hero and framed mobile preview */
+.carenow-site .care-hero{background:#fffaf1;padding-top:142px;padding-bottom:82px}
+.carenow-site .care-hero-grid{grid-template-columns:1.02fr .98fr;gap:52px}
+.carenow-site .care-hero h1{font-family:Georgia,'Times New Roman',serif;font-weight:700;letter-spacing:-.045em;line-height:1.03;font-size:clamp(3.1rem,5.2vw,5rem);color:#143c3e}
+.carenow-site .care-hero h1 span{color:#0799a7}
+.carenow-site .care-hero-copy>p{max-width:530px;color:#56696b;font-size:1.04rem;line-height:1.8}
+.carenow-site .care-hero .eyebrow{color:#087f89;background:#e5f7f5;border-color:#d1efeb}
+.carenow-site .care-hero .btn.primary{background:#0799a7;box-shadow:0 9px 22px #0799a72b}
+.carenow-site .care-hero .btn.outline{border-color:#cbd8d5;color:#214b4d;background:#fff}
+.trustbees-visual{min-height:540px;position:relative;display:flex;align-items:center;justify-content:center}
+.trustbees-visual .care-logo-glow{width:420px;height:420px;background:#f8e7c7;filter:none}
+.trust-phone-shadow{position:absolute;width:310px;height:410px;border-radius:45% 45% 24px 24px;background:#f7e6c6;transform:translate(16px,14px)}
+.trust-phone-frame{position:relative;width:254px;height:500px;padding:10px 8px 13px;border:7px solid #172c2d;border-radius:39px;background:#172c2d;box-shadow:0 28px 60px #173b3b30;overflow:hidden;z-index:2}
+.trust-phone-frame>img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;border-radius:25px;background:#fff}
+.trust-phone-notch{position:absolute;z-index:3;top:9px;left:50%;transform:translateX(-50%);height:17px;width:82px;background:#172c2d;border-radius:0 0 12px 12px}
+.trust-phone-home{position:absolute;z-index:3;bottom:5px;left:50%;transform:translateX(-50%);width:74px;height:4px;border-radius:8px;background:#172c2d}
+.trust-float-card{position:absolute;z-index:4;display:flex;align-items:center;gap:10px;padding:13px 16px;border:1px solid #f1e6d6;border-radius:15px;background:#fff;box-shadow:0 16px 35px #304b4b18;color:#183f40}
+.trust-float-card strong,.trust-float-card small{display:block}.trust-float-card strong{font-size:.8rem}.trust-float-card small{font-size:.68rem;color:#738181;margin-top:3px}
+.trust-float-top{top:86px;left:-2px}.trust-float-bottom{right:-5px;bottom:72px}
+.trust-float-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#e3f7f3;color:#0799a7}
+.trust-online-dot{width:10px;height:10px;border-radius:50%;background:#28ae79;box-shadow:0 0 0 5px #e5f8ee}
+.carenow-services{background:#fff}
+.service-price-note{display:flex;align-items:center;gap:16px;max-width:760px;margin:28px auto 30px;padding:18px 22px;border:1px solid #cfece8;border-radius:18px;background:#f0fbf8}
+.service-price-symbol{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:15px;background:#0799a7;color:white;font-size:1.7rem;font-weight:800}
+.service-price-note strong{color:#164648;font-size:1rem}.service-price-note p{margin:4px 0 0;color:#647575;font-size:.82rem;line-height:1.55}
+.service-cards-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.service-price-card{display:flex;flex-direction:column;min-height:245px;padding:22px;border:1px solid #e7eeeb;border-radius:20px;background:#fff;box-shadow:0 14px 35px -30px #1b55554d;transition:transform .2s,box-shadow .2s}
+.service-price-card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -27px #1b55554d}
+.service-mark{display:grid;place-items:center;width:47px;height:47px;border-radius:15px;background:#e8f8f5;color:#078b97;font-size:1.55rem;font-weight:800}
+.service-card-copy h3{margin:15px 0 7px;font:700 1rem Poppins,sans-serif;color:#183f40}.service-card-copy p{margin:0;color:#6b7b7b;font-size:.83rem;line-height:1.6}
+.service-card-price{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-top:auto;padding-top:19px}.service-card-price small{font-size:.72rem;color:#748181}.service-card-price strong{font-size:1.15rem;color:#087f89}.service-card-price em{font-style:normal;font-size:.72rem;font-weight:600;color:#617576}
+.service-disclaimer{max-width:900px;margin:22px auto 0;color:#778282;font-size:.78rem;line-height:1.65;text-align:center}
+@media(max-width:1050px){.carenow-site .care-hero-grid{gap:25px}.trustbees-visual{transform:scale(.92)}.service-cards-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.carenow-site .care-hero{padding:115px 0 58px}.carenow-site .care-hero-grid{grid-template-columns:1fr;gap:10px}.trustbees-visual{grid-row:1;min-height:445px;transform:none;margin-bottom:4px}.trustbees-visual .care-logo-glow{width:300px;height:300px}.trust-phone-shadow{width:245px;height:320px}.trust-phone-frame{width:204px;height:405px;border-width:6px;border-radius:32px;padding:8px 6px 10px}.trust-phone-frame>img{border-radius:21px}.trust-phone-notch{top:7px;height:14px;width:67px}.trust-float-top{top:55px;left:0}.trust-float-bottom{right:0;bottom:48px}.trust-float-card{padding:10px 12px}.trust-float-card strong{font-size:.72rem}.trust-float-card small{font-size:.62rem}.trust-float-icon{width:32px;height:32px}.carenow-site .care-hero h1{font-size:clamp(2.8rem,12vw,4rem)}.service-cards-grid{grid-template-columns:1fr 1fr;gap:11px}.service-price-card{padding:16px;min-height:245px}.service-card-price{display:block}.service-card-price strong{display:block;margin-top:3px}.service-price-note{padding:15px}.service-price-note strong{font-size:.9rem}}
+@media(max-width:460px){.service-cards-grid{grid-template-columns:1fr}.service-price-card{min-height:0}.service-card-price{display:flex}.service-card-price strong{display:inline;margin-top:0}.trust-float-top{left:-4px}.trust-float-bottom{right:-4px}.trustbees-visual{min-height:415px}}
+
+/* CareNow polish: clearer brand, Android download action, service photography and true device-framed demos */
+.care-nav-product{height:60px;flex:1;display:flex;justify-content:center;align-items:center;min-width:150px}
+.care-nav-product img{display:block;width:clamp(135px,15vw,220px);height:58px;max-width:none;object-fit:contain;object-position:center}
+.care-nav-actions{display:flex;align-items:center;gap:12px}
+.nav-care-download{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:12px 22px;border-radius:999px;background:linear-gradient(110deg,#079fb3,#034e70);color:#fff!important;font-size:.92rem;font-weight:750;box-shadow:0 10px 24px #007f9430}
+.nav-care-download:hover{transform:translateY(-1px);box-shadow:0 14px 28px #007f9440}
+.nav-care-download svg{flex-shrink:0}
+.care-nav-product img{filter:none}
+.service-price-card{padding:0;overflow:hidden;min-height:355px}
+.service-card-image{display:block;width:100%;height:190px;object-fit:cover;background:#eaf8f7}
+.service-card-copy{padding:18px 20px 6px;flex:1}
+.service-card-copy h3{margin:0 0 8px}
+.service-card-copy p{margin:0;line-height:1.55}
+.service-card-price{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 20px 18px;margin-top:auto}
+.demo-panel{grid-template-columns:.72fr 1.28fr;align-items:center;gap:34px;padding:34px}
+.demo-phone-wrap{display:flex;justify-content:center;align-items:center;min-width:0;padding:4px 0}
+.demo-phone-frame{position:relative;display:flex;align-items:center;justify-content:center;width:min(100%,360px);height:min(78svh,720px);aspect-ratio:9/19.5;padding:18px 9px;border:8px solid #102b35;border-radius:42px;background:#102b35;box-shadow:0 25px 60px #0a344426;overflow:hidden;flex:0 1 auto}
+.demo-phone-frame video{display:block;width:100%;height:100%;max-height:none;object-fit:contain;object-position:center;background:#061b26;border-radius:27px;box-shadow:none;outline:0}
+.demo-phone-camera{position:absolute;z-index:2;top:8px;left:50%;transform:translateX(-50%);width:76px;height:17px;border-radius:0 0 13px 13px;background:#102b35;pointer-events:none}
+.demo-phone-home{position:absolute;z-index:2;bottom:5px;left:50%;transform:translateX(-50%);width:70px;height:4px;border-radius:4px;background:#d4e4e8;pointer-events:none}
+@media(max-width:1050px){.demo-panel{grid-template-columns:1fr 1fr}.demo-phone-frame{height:min(74svh,620px);width:min(100%,320px)}}
+@media(max-width:760px){.care-nav-product{display:flex;flex:1;min-width:0;height:48px}.care-nav-product img{width:clamp(115px,31vw,165px);height:45px}.care-brand img{width:105px}.care-nav-actions{gap:7px}.nav-care-download{font-size:.76rem;padding:10px 13px;min-height:42px}.nav-care-download svg{width:17px;height:17px}.demo-panel{grid-template-columns:1fr;padding:22px;gap:20px}.demo-phone-wrap{width:100%;max-width:100%;overflow:hidden}.demo-phone-frame{height:min(68svh,620px);width:min(78vw,300px);max-width:100%;padding:14px 7px;border-width:7px;border-radius:37px;aspect-ratio:9/19.5}.demo-phone-frame video{border-radius:25px}.service-cards-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.service-price-card{min-height:345px}.service-card-image{height:155px}.service-card-copy{padding:15px 15px 6px}.service-card-price{padding:12px 15px 16px}}
+@media(max-width:460px){.care-navbar .nav-inner{gap:6px}.care-brand img{width:90px}.care-nav-product img{width:105px;height:39px}.care-nav-actions{gap:5px}.nav-care-download{font-size:0;width:42px;height:42px;min-height:42px;padding:0;gap:0}.nav-care-download svg{width:21px;height:21px}.care-admin-btn{width:39px;height:39px}.service-cards-grid{grid-template-columns:1fr}.service-price-card{min-height:0}.service-card-image{height:205px}.service-card-price{display:flex}.demo-phone-frame{height:min(66svh,590px);width:min(76vw,270px);padding:12px 6px}.demo-phone-camera{width:62px;height:14px}.demo-phone-home{width:58px}}
+@media(prefers-reduced-motion:reduce){.demo-phone-frame video{animation:none}}

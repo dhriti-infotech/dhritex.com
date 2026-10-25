@@ -1,213 +1,51 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useState } from 'react';
 import Icon from '../components/Icon';
-import SectionHeading from '../components/SectionHeading';
-
 import { SITE_CONFIG } from '../config';
 
-const logo = SITE_CONFIG.logo;
-
-const phoneScreens = [
-  {
-    title: 'User App',
-    label: 'CareNow patient experience',
-    image: '/assets/carenow-user.jpg',
-  },
-  {
-    title: 'Professional App',
-    label: 'Healthcare worker dashboard',
-    image: '/assets/carenow-professional1.jpg',
-  },
-  {
-    title: 'Login & Onboarding',
-    label: 'Simple OTP-based access',
-    image: '/assets/carenow-login.jpg',
-  },
-  {
-    title: 'Service Tracking',
-    label: 'Real-time service updates',
-    image: '/assets/carenow-service.jpeg',
-  },
-];
-
-function HomePage({ onOpenAdmin }) {
+function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeProduct, setActiveProduct] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   const go = (id) => {
     setMenuOpen(false);
-    document
-      .getElementById(id)
-      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
-
-  return (
-    <div className="site-shell">
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="container nav-inner">
-          <button className="brand" onClick={() => go('home')} aria-label="Dhriti Infotech home">
-            <img src={logo} alt="dhritex.com" />
-          </button>
-          <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">
-            <Icon name={menuOpen ? 'close' : 'menu'} size={26} />
-          </button>
-          <div className={`nav-menu ${menuOpen ? 'open' : ''}`}>
-            <button onClick={() => go('home')}>Home</button>
-            <button onClick={() => go('about')}>About</button>
-            <button onClick={() => go('products')}>Products</button>
-            <button onClick={() => go('clients')}>Clients</button>
-            <button onClick={() => go('leadership')}>Leadership</button>
-            <button onClick={() => go('contact')}>Contact</button>
-            <button onClick={onOpenAdmin}>Admin Login</button>
-            <button className="nav-cta" onClick={() => go('contact')}>Let's Talk <Icon name="arrow" size={17} /></button>
-          </div>
+  return <div className="site-shell">
+    <nav className="navbar">
+      <div className="container nav-inner">
+        <a className="brand" href="#home" aria-label="Dhriti Infotech home"><img src={SITE_CONFIG.logo} alt="dhritex.com" /></a>
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation"><Icon name={menuOpen ? 'close' : 'menu'} size={26}/></button>
+        <div className={`nav-menu ${menuOpen ? 'open' : ''}`}>
+          <button onClick={() => go('home')}><Icon name="home" size={17}/><span>Home</span></button>
+          <button onClick={() => go('about')}><Icon name="info" size={17}/><span>About</span></button>
+          <button onClick={() => go('products')}><Icon name="grid" size={17}/><span>Products</span></button>
+          <button onClick={() => go('contact')}><Icon name="mail" size={17}/><span>Contact</span></button>
+          <button className="nav-cta" onClick={() => go('products')}>Explore Products <Icon name="arrow" size={17}/></button>
         </div>
-      </nav>
-
-      <header className="hero" id="home">
-        <span className="blob blob-one" /><span className="blob blob-two" /><span className="blob blob-three" />
-        <div className="container hero-grid">
-          <div className="hero-copy">
-            <span className="eyebrow"><Icon name="spark" size={15} /> Technology • Products • Innovation</span>
-            <h1>Building digital products that make <span>life simpler.</span></h1>
-            <p>Dhriti Infotech is a Hyderabad-based technology company focused on scalable software, modern web experiences and practical digital products.</p>
-            <div className="hero-actions">
-              <button className="btn primary" onClick={() => go('products')}>Explore Our Products <Icon name="arrow" size={18} /></button>
-              <button className="btn outline" onClick={() => go('contact')}>Work With Us</button><a className="btn primary" href="https://drive.google.com/uc?export=download&id=1SghimhPw56DQDdXp39RwKkP22tuiVh32" target="_blank" rel="noreferrer">Get CareNow Beta <Icon name="arrow" size={18} /></a>
-            </div>
-            <div className="hero-proof">
-              <div className="proof-icon"><Icon name="code" size={21} /></div>
-              <div><strong>Built for scale</strong><span>Web • Mobile • Cloud • AI</span></div>
-            </div>
-          </div>
-          <div className="hero-visual">
-            <div className="hero-screen-frame">
-              <img src="/assets/carenow-user.jpg" alt="CareNow user app home screen" />
-            </div>
-            <div className="float-card float-top"><div className="float-icon cyan"><Icon name="shield" size={21} /></div><div><strong>CareNow — Beta Launched</strong><span>Download the Android beta and explore healthcare at your doorstep.</span></div></div>
-            <div className="float-card float-bottom"><div className="float-icon navy"><Icon name="cloud" size={21} /></div><div><strong>Digital Solutions</strong><span>Currently in development</span></div></div>
-          </div>
-        </div>
-      </header>
-
-      <section className="stats-wrap">
-        <div className="container stats-band">
-          <div><strong>01</strong><span>Digital Products</span></div>
-          <div><strong>01</strong><span>Featured Client</span></div>
-          <div><strong>2</strong><span>Leadership Team</span></div>
-          <div><strong>100%</strong><span>Product Focused</span></div>
-        </div>
-      </section>
-
-      <section className="section" id="about">
-        <div className="container about-grid">
-          <div className="about-visual">
-            <div className="about-main-card"><img src="/assets/carenow-professional1.jpg" alt="CareNow professional dashboard" /></div>
-            <div className="about-badge"><span className="badge-mark"><Icon name="spark" size={19} /></span><div><strong>Dhriti Infotech</strong><small>Technology &amp; innovation</small></div></div>
-            <div className="about-accent" />
-          </div>
-          <div>
-            <SectionHeading eyebrow="Who We Are" title="Technology with a practical purpose.">We combine engineering, product thinking and user-focused design to turn ideas into dependable digital experiences.</SectionHeading>
-            <ul className="feature-list">
-              <li><span><Icon name="check" size={17} /></span><div><strong>Modern engineering</strong><p>ReactJS, Java, Spring Boot, cloud-native systems and scalable APIs.</p></div></li>
-              <li><span><Icon name="check" size={17} /></span><div><strong>Product mindset</strong><p>We design around real user needs, keeping interfaces simple and useful.</p></div></li>
-              <li><span><Icon name="check" size={17} /></span><div><strong>Built to scale</strong><p>Architecture and components are structured so products can evolve as the business grows.</p></div></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="section alt" id="products">
-        <div className="container">
-          <SectionHeading eyebrow="Our Products" title="Products built around real-world needs." center>Our current product portfolio starts with CareNow, a healthcare quick-service platform connecting users with nearby healthcare professionals and services.</SectionHeading>
-          <div className="product-showcase">
-            <div className="product-info">
-              <span className="product-kicker">Featured Product</span>
-              <h3>CareNow</h3>
-              <p className="product-lead">Healthcare at your doorstep.</p>
-              <p>CareNow brings together nurse-at-home services, healthcare professionals, medicines and medical equipment in a simple mobile experience.</p>
-              <div className="tag-row"><span>React Native</span><span>Spring Boot</span><span>Location</span><span>Cloud Ready</span></div>
-              <div className="hero-actions product-download-actions"><a className="btn primary" href="https://drive.google.com/uc?export=download&id=1SghimhPw56DQDdXp39RwKkP22tuiVh32" target="_blank" rel="noreferrer">Download Android Beta <Icon name="arrow" size={18} /></a><button className="btn outline" onClick={() => go('contact')}>Discuss the Product</button></div>
-            </div>
-            <div className="screens-panel">
-              <div className="screen-tabs">
-                {phoneScreens.map((s, i) => <button key={s.title} className={i === activeProduct ? 'active' : ''} onClick={() => setActiveProduct(i)}>{s.title}</button>)}
-              </div>
-              <div className="phone-stage">
-                {phoneScreens.map((s, i) => <div key={s.title} className={`phone-card ${i === activeProduct ? 'active' : ''}`}><img src={s.image} alt={s.label} /></div>)}
-              </div>
-              <div className="screen-caption">{phoneScreens[activeProduct].label}</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="clients">
-        <div className="container">
-          <SectionHeading eyebrow="Our Clients" title="Working with businesses that value technology.">We partner with organizations that want dependable digital experiences and software that can grow with their needs.</SectionHeading>
-          <div className="client-card">
-            <div className="client-mark">F</div>
-            <div className="client-copy"><span>Current Client</span><h3>Freshzo</h3><p>A client relationship represented here as the first entry in Dhriti Infotech's growing portfolio.</p></div>
-            <div className="client-arrow"><Icon name="arrow" size={23} /></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section alt" id="leadership">
-        <div className="container">
-          <SectionHeading eyebrow="Leadership" title="People behind Dhriti Infotech." center>Focused leadership across technology, product direction, operations and people.</SectionHeading>
-          <div className="leadership-grid">
-            {/* <article className="leader-card"><div className="leader-avatar">R</div><div><span>Founder&amp; CEO</span><h3>Jyoti Singh</h3><p>Technology, architecture, product engineering and innovation.</p></div></article> */}
-            {/* <article className="leader-card"><div className="leader-avatar cyan-bg">J</div><div><span>CFO &amp; HR</span><h3>Jyoti</h3><p>Finance, people operations and organizational growth.</p></div></article> */}
-          </div>
-        </div>
-      </section>
-
-      <section className="section contact-section" id="contact">
-        <div className="container contact-grid">
-          <div>
-            <SectionHeading eyebrow="Contact Us" title="Let's build something useful together.">Have a product idea, software requirement or partnership opportunity? Reach out to Dhriti Infotech.</SectionHeading>
-            <div className="contact-items">
-              <a href="tel:+919472501328"><span><Icon name="phone" size={20} /></span><div><small>Call us</small><strong>+91 9472501328</strong></div></a>
-              <a href="mailto:infotech.dhriti@gmail.com"><span><Icon name="mail" size={20} /></span><div><small>Email us</small><strong>infotech.dhriti@gmail.com</strong></div></a>
-              <div><span><Icon name="pin" size={20} /></span><div><small>Office</small><strong>Hitech City, Hyderabad, Telangana, India</strong></div></div>
-            </div>
-          </div>
-          <div className="contact-card">
-            <div className="contact-card-head"><div className="mini-logo"><img src={logo} alt="dhritex.com" /></div><div><strong>Dhriti Infotech</strong><span>Technology • Products • Innovation</span></div></div>
-            <p>For business enquiries, product discussions and technology partnerships, contact us directly.</p>
-            <div className="contact-buttons"><a className="btn primary" href="mailto:infotech.dhriti@gmail.com">Email Dhriti <Icon name="arrow" size={17} /></a><a className="btn outline" href="https://wa.me/919472501328" target="_blank" rel="noreferrer"><Icon name="whatsapp" size={18} /> WhatsApp</a></div>
-          </div>
-        </div>
-      </section>
-
-
-      <footer className="footer">
-        <div className="container footer-grid">
-          <div><img className="footer-logo" src={logo} alt="dhritex.com" /><p>Building digital products and technology solutions with a focus on simplicity, reliability and scale.</p></div>
-          <div><h4>Company</h4><button onClick={() => go('about')}>About</button><button onClick={() => go('products')}>Products</button><button onClick={() => go('clients')}>Clients</button></div>
-          <div><h4>Connect</h4><a href="tel:+919472501328">+91 9472501328</a><a href="mailto:infotech.dhriti@gmail.com">infotech.dhriti@gmail.com</a><span>Hitech City, Hyderabad, Telangana</span></div>
-        </div>
-        <div className="container footer-bottom"><span>© 2026 Dhriti Infotech. All rights reserved.</span><span>dhritex.com</span></div>
-      </footer>
-
-      <div className="floating-actions" aria-label="Quick contact">
-        <a className="float-action whatsapp" href="https://wa.me/919472501328" target="_blank" rel="noreferrer" aria-label="WhatsApp Dhriti Infotech"><Icon name="whatsapp" size={24} /></a>
-        <a className="float-action email" href="mailto:infotech.dhriti@gmail.com" aria-label="Email Dhriti Infotech"><Icon name="mail" size={23} /></a>
       </div>
-      <button className="scroll-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Scroll to top"><Icon name="arrow" size={19} /></button>
-    </div>
-  );
+    </nav>
+    <header className="hero product-home-hero" id="home">
+      <span className="blob blob-one"/><span className="blob blob-two"/><span className="blob blob-three"/>
+      <div className="container hero-grid">
+        <div className="hero-copy">
+          <span className="eyebrow"><Icon name="spark" size={15}/> Technology · Products · Innovation</span>
+          <h1>Digital products for <span>everyday needs.</span></h1>
+          <p>Dhriti Infotech builds practical digital experiences that bring people, services and local commerce closer together. Explore the products we are building.</p>
+          <div className="hero-actions"><button className="btn primary" onClick={() => go('products')}>Explore Our Products <Icon name="arrow" size={18}/></button><button className="btn outline" onClick={() => go('contact')}>Contact Us</button></div>
+          <div className="hero-proof"><div className="proof-icon"><Icon name="code" size={21}/></div><div><strong>Technology with a purpose</strong><span>Useful experiences, designed around people</span></div></div>
+        </div>
+        <div className="product-hero-art"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><div className="hero-product-tile care-tile"><img src="/assets/carenow-splash.png" alt="CareNow — Healthcare Closer to You"/></div><div className="hero-product-tile baskit-tile"><img src="/assets/baskit-logo.png" alt="Baskit by dhritex.com"/></div></div>
+      </div>
+    </header>
+    <section className="section product-directory" id="products"><div className="container">
+      <div className="section-heading center"><span className="eyebrow">Our Products</span><h2>Two ideas. One goal: make life simpler.</h2><p>Explore our digital products and see how each one is designed to solve a real-world need.</p></div>
+      <div className="product-cards">
+        <article className="directory-card carenow-card"><div className="directory-logo care-logo"><img src="/assets/carenow-splash.png" alt="CareNow logo"/></div><div className="directory-body"><span className="directory-kicker">Home healthcare platform</span><h3>CareNow</h3><p>Helping patients request eligible home healthcare services and helping qualified professionals manage service requests in one connected experience.</p><div className="directory-tags"><span>For Patients</span><span>For Professionals</span><span>Service Tracking</span></div><a href="#/carenow" className="btn primary">Explore CareNow <Icon name="arrow" size={18}/></a></div><div className="directory-number">01</div></article>
+        <article className="directory-card baskit-card"><div className="directory-logo baskit-logo"><img src="/assets/baskit-logo.png" alt="Baskit logo"/></div><div className="directory-body"><span className="directory-kicker">Local grocery convenience</span><h3>Baskit</h3><p>A grocery-shopping experience in development, designed to help customers discover everyday essentials from nearby stores.</p><div className="coming-soon"><span className="coming-dot"/> App launching soon</div><button className="btn outline" onClick={() => go('contact')}>Stay in Touch <Icon name="arrow" size={18}/></button></div><div className="directory-number">02</div></article>
+      </div>
+    </div></section>
+    <section className="section alt" id="about"><div className="container about-grid"><div><span className="eyebrow">About Dhriti Infotech</span><h2 className="simple-heading">Technology with a practical purpose.</h2><p className="muted-large">We combine engineering, product thinking and user-focused design to turn ideas into dependable digital experiences.</p><ul className="feature-list"><li><span><Icon name="check" size={17}/></span><div><strong>User-focused design</strong><p>Clear journeys that help people understand and use our products.</p></div></li><li><span><Icon name="check" size={17}/></span><div><strong>Modern engineering</strong><p>Web, mobile and backend systems built to evolve with user needs.</p></div></li><li><span><Icon name="check" size={17}/></span><div><strong>Products that solve problems</strong><p>We focus on useful services, convenience and accessible digital experiences.</p></div></li></ul></div><div className="about-visual"><div className="about-main-card"><img src="/assets/carenow-user.jpg" alt="CareNow mobile app"/></div><div className="about-badge"><span className="badge-mark"><Icon name="spark" size={19}/></span><div><strong>Dhriti Infotech</strong><small>Technology &amp; innovation</small></div></div><div className="about-accent"/></div></div></section>
+    <section className="section contact-section" id="contact"><div className="container contact-grid"><div><div className="section-heading"><span className="eyebrow">Contact Us</span><h2>Have a question or an idea?</h2><p>Get in touch with Dhriti Infotech for product enquiries, feedback or partnership discussions.</p></div><div className="contact-items"><a href="tel:+919472501328"><span><Icon name="phone" size={20}/></span><div><small>Call us</small><strong>+91 9472501328</strong></div></a><a href="mailto:infotech.dhriti@gmail.com"><span><Icon name="mail" size={20}/></span><div><small>Email us</small><strong>infotech.dhriti@gmail.com</strong></div></a><div><span><Icon name="pin" size={20}/></span><div><small>Office</small><strong>Hitech City, Hyderabad, Telangana, India</strong></div></div></div></div><div className="contact-card"><div className="contact-card-head"><div className="mini-logo"><img src={SITE_CONFIG.logo} alt="dhritex.com"/></div><div><strong>Dhriti Infotech</strong><span>Technology · Products · Innovation</span></div></div><p>For business enquiries, product discussions and technology partnerships, contact us directly.</p><div className="contact-buttons"><a className="btn primary" href="mailto:infotech.dhriti@gmail.com">Email Dhriti <Icon name="arrow" size={17}/></a><a className="btn outline" href="https://wa.me/919472501328" target="_blank" rel="noreferrer"><Icon name="whatsapp" size={18}/> WhatsApp</a></div></div></div></section>
+    <footer className="footer"><div className="container footer-grid"><div><img className="footer-logo" src={SITE_CONFIG.logo} alt="dhritex.com"/><p>Building digital products and technology solutions with a focus on simplicity, reliability and scale.</p></div><div><h4>Explore</h4><a href="#products">Products</a><a href="#about">About Us</a><a href="#contact">Contact</a></div><div><h4>Connect</h4><a href="tel:+919472501328">+91 9472501328</a><a href="mailto:infotech.dhriti@gmail.com">infotech.dhriti@gmail.com</a><span>Hitech City, Hyderabad, Telangana</span></div></div><div className="container footer-bottom"><span>© 2026 Dhriti Infotech. All rights reserved.</span><span>dhritex.com</span></div></footer>
+    <div className="floating-actions"><a className="float-action whatsapp" href="https://wa.me/919472501328" target="_blank" rel="noreferrer" aria-label="WhatsApp"><Icon name="whatsapp" size={24}/></a><a className="float-action email" href="mailto:infotech.dhriti@gmail.com" aria-label="Email"><Icon name="mail" size={23}/></a></div>
+  </div>;
 }
-
 export default HomePage;

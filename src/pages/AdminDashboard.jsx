@@ -23,6 +23,12 @@ function AdminDashboard({ onExit }) {
   const [docs, setDocs] = useState([]);
   const [docLoading, setDocLoading] = useState(false);
   const [activeView, setActiveView] = useState('overview');
+  const [releaseForm, setReleaseForm] = useState({ version: '', releaseNotes: '' });
+  const [releaseFile, setReleaseFile] = useState(null);
+  const [releaseUploading, setReleaseUploading] = useState(false);
+  const [releaseProgress, setReleaseProgress] = useState(0);
+  const [releaseUploadPhase, setReleaseUploadPhase] = useState('idle');
+  const [releaseResult, setReleaseResult] = useState(null);
 
   const authFetch = async (path, options = {}) => {
     const res = await fetch(`${API_BASE}${path}`, {
@@ -178,7 +184,74 @@ function AdminDashboard({ onExit }) {
     }
   };
 
+  const uploadCareNowRelease = async (e) => {
+    e.preventDefault();
+    setError('');
+    setReleaseResult(null);
+    if (!releaseFile) { setError('Please select a CareNow APK file.'); return; }
+    if (!releaseFile.name.toLowerCase().endsWith('.apk')) { setError('Only .apk files are supported.'); return; }
+    if (!releaseForm.version.trim()) { setError('Enter the CareNow version, for example 1.0.3.'); return; }
+
+    const form = new FormData();
+    form.append('file', releaseFile);
+    form.append('version', releaseForm.version.trim());
+    form.append('releaseNotes', releaseForm.releaseNotes.trim());
+    setReleaseUploading(true);
+    setReleaseProgress(0);
+    setReleaseUploadPhase('uploading');
+    try {
+      // XMLHttpRequest exposes real browser-to-backend upload progress.
+      const result = await new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `${API_BASE}/api/admin/releases/carenow`);
+        xhr.setRequestHeader('Authorization', `Bearer ${token}`);
+        xhr.upload.addEventListener('progress', (event) => {
+          if (event.lengthComputable) {
+            const percent = Math.min(100, Math.round((event.loaded / event.total) * 100));
+            setReleaseProgress(percent);
+            if (percent >= 100) setReleaseUploadPhase('publishing');
+          }
+        });
+        xhr.addEventListener('load', () => {
+          let body;
+          try { body = xhr.responseText ? JSON.parse(xhr.responseText) : {}; }
+          catch { body = { message: xhr.responseText }; }
+
+          if (xhr.status === 401 || xhr.status === 403) {
+            sessionStorage.removeItem('dhritex_admin_token');
+            setToken('');
+            reject(new Error('Admin session expired. Please login again.'));
+            return;
+          }
+          if (xhr.status < 200 || xhr.status >= 300) {
+            reject(new Error(body.message || body.error || xhr.responseText || `Upload failed (${xhr.status}).`));
+            return;
+          }
+          resolve(body);
+        });
+        xhr.addEventListener('error', () => reject(new Error('Network error while uploading the APK. Check your connection and backend availability.')));
+        xhr.addEventListener('abort', () => reject(new Error('APK upload was cancelled.')));
+        xhr.send(form);
+      });
+
+      setReleaseProgress(100);
+      setReleaseUploadPhase('publishing');
+      setReleaseResult(result);
+      setReleaseForm({ version: '', releaseNotes: '' });
+      setReleaseFile(null);
+      const fileInput = document.getElementById('carenow-apk-file');
+      if (fileInput) fileInput.value = '';
+    } catch (e) {
+      setError(e.message || 'Unable to upload CareNow APK.');
+      setReleaseUploadPhase('error');
+    } finally {
+      setReleaseUploading(false);
+      if (releaseUploadPhase !== 'error') setReleaseUploadPhase('idle');
+    }
+  };
+
   const goToView = (view) => {
+    setError('');
     setActiveView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -351,6 +424,12 @@ function AdminDashboard({ onExit }) {
             >
               <Icon name="shield" size={18} /> Payment Settings
             </button>
+            <button
+              className={activeView === 'releases' ? 'active' : ''}
+              onClick={() => goToView('releases')}
+            >
+              <Icon name="upload" size={18} /> CareNow APK Releases
+            </button>
           </div>
 
           <div className="admin-nav-group">
@@ -414,6 +493,7 @@ function AdminDashboard({ onExit }) {
                 {activeView === 'users' && 'Registered users'}
                 {activeView === 'requests' && 'Service requests'}
                 {activeView === 'payments' && 'Payment settings'}
+                {activeView === 'releases' && 'CareNow APK releases'}
               </h1>
               <p>
                 {activeView === 'overview' &&
@@ -426,6 +506,8 @@ function AdminDashboard({ onExit }) {
                   'Review all nurse service requests, requester details, completion codes and current status.'}
                 {activeView === 'payments' &&
                   'Configure static UPI QR payments and verify manual platform-fee settlements.'}
+                {activeView === 'releases' &&
+                  'Upload a new CareNow Android APK and publish it as a GitHub Release.'}
               </p>
             </div>
             <div className="admin-heading-meta">
@@ -812,6 +894,41 @@ function AdminDashboard({ onExit }) {
 
           {activeView === 'payments' && (
             <PaymentSettings authFetch={authFetch} apiBase={API_BASE} />
+          )}
+
+          {activeView === 'releases' && (
+            <section className="admin-panel carenow-release-panel">
+              <div className="panel-heading">
+                <div><span className="admin-kicker">ANDROID DISTRIBUTION</span><h2>Publish CareNow APK</h2><p>Upload an APK to create a GitHub Release. The website download link can continue pointing to the latest release.</p></div>
+              </div>
+              <form className="release-upload-form" onSubmit={uploadCareNowRelease}>
+                <label className="release-file-drop" htmlFor="carenow-apk-file">
+                  <Icon name="upload" size={28} />
+                  <strong>{releaseFile ? releaseFile.name : 'Choose CareNow APK file'}</strong>
+                  <span>{releaseFile ? `${(releaseFile.size / (1024 * 1024)).toFixed(1)} MB selected` : 'Android package (.apk), up to the backend upload limit'}</span>
+                  <input id="carenow-apk-file" type="file" accept=".apk,application/vnd.android.package-archive" onChange={(e) => setReleaseFile(e.target.files?.[0] || null)} />
+                </label>
+                <div className="release-form-fields">
+                  <label>Version <input value={releaseForm.version} onChange={(e) => setReleaseForm({ ...releaseForm, version: e.target.value })} placeholder="1.0.3" required /></label>
+                  <label>Release notes <textarea value={releaseForm.releaseNotes} onChange={(e) => setReleaseForm({ ...releaseForm, releaseNotes: e.target.value })} placeholder="Bug fixes, improvements, and changes…" rows={4} /></label>
+                </div>
+                <div className="release-upload-actions"><button className="btn primary" type="submit" disabled={releaseUploading}>{releaseUploading ? `Uploading APK… ${releaseProgress}%` : 'Upload & Publish Release'}</button><small>Keep this page open until the upload finishes. Large APK uploads may take a few minutes.</small></div>
+                {releaseUploading && (
+                  <div className="release-progress-wrap" aria-live="polite">
+                    <div className="release-progress-heading">
+                      <strong>{releaseUploadPhase === 'publishing' ? 'Publishing GitHub Release…' : `Uploading CareNow APK — ${releaseProgress}%`}</strong>
+                      <span>{releaseUploadPhase === 'publishing' ? 'File received by backend' : `${releaseFile ? ((releaseFile.size * releaseProgress / 100) / (1024 * 1024)).toFixed(1) : '0.0'} MB of ${releaseFile ? (releaseFile.size / (1024 * 1024)).toFixed(1) : '—'} MB`}</span>
+                    </div>
+                    <div className="release-progress-track" role="progressbar" aria-label="CareNow APK upload progress" aria-valuenow={releaseProgress} aria-valuemin={0} aria-valuemax={100}>
+                      <div className="release-progress-fill" style={{ width: `${releaseProgress}%` }} />
+                    </div>
+                    <small>{releaseUploadPhase === 'publishing' ? 'Upload complete. Waiting for GitHub to finish publishing the release; this may take a little longer.' : 'Progress reflects bytes sent from this browser to the backend.'}</small>
+                  </div>
+                )}
+              </form>
+              {releaseResult && <div className="release-success"><strong>Release published successfully.</strong><span>{releaseResult.message || `CareNow ${releaseForm.version || 'release'} is now published.`}</span>{(releaseResult.releaseUrl || releaseResult.htmlUrl) && <a href={releaseResult.releaseUrl || releaseResult.htmlUrl} target="_blank" rel="noreferrer">View GitHub Release ↗</a>}{(releaseResult.downloadUrl || releaseResult.browserDownloadUrl) && <a href={releaseResult.downloadUrl || releaseResult.browserDownloadUrl} target="_blank" rel="noreferrer">Download APK ↗</a>}</div>}
+              <div className="release-info-note"><strong>Before using this feature</strong><p>The backend must be deployed with <code>GITHUB_OWNER=dhriti-infotech</code>, <code>GITHUB_REPO=dhritex.com</code>, and a secret <code>GITHUB_TOKEN</code>. The upload API requires a valid admin token.</p></div>
+            </section>
           )}
         </div>
       </main>
