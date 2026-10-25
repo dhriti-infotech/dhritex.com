@@ -36,7 +36,7 @@ function CareNowPage({ onOpenAdmin }) {
             <path d="M7.1 5.2 5.8 3.3a.5.5 0 0 1 .8-.6L8 4.7a8.7 8.7 0 0 1 8 0l1.4-2a.5.5 0 0 1 .8.6l-1.3 1.9A7.8 7.8 0 0 1 20 11H4a7.8 7.8 0 0 1 3.1-5.8ZM7 12h10v6.2a1.8 1.8 0 0 1-1.8 1.8h-.7v2a1 1 0 0 1-2 0v-2h-2v2a1 1 0 0 1-2 0v-2h-.7A1.8 1.8 0 0 1 7 18.2V12ZM4 12h2v5.5a1 1 0 0 1-2 0V12Zm14 0h2v5.5a1 1 0 0 1-2 0V12Z" />
           </svg>
         </span>
-        <span>Download CareNow</span>
+        <span>CareNow</span>
       </a>
 
         <button className="care-admin-btn" onClick={onOpenAdmin} title="CareNow Admin Tool" aria-label="Open CareNow admin tool"><Icon name="terminal" size={21}/></button></div>
