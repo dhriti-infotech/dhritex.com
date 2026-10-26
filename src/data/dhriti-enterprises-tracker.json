@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "description": "Default seed data for the Dhriti Enterprises business tracker. Browser edits are stored separately until backend persistence is implemented.",
+  "stages": [
+    {
+      "name": "Raw Makhana Sourcing",
+      "desc": "Identify and qualify top-quality raw phool makhana.",
+      "tasks": [
+        "Define quality and size grades",
+        "Request samples from at least 3 suppliers",
+        "Inspect moisture, colour, broken pieces and roasting quality"
+      ],
+      "icon": "🌰"
+    },
+    {
+      "name": "Trader Discussion & Price Finalization",
+      "desc": "Compare trader quotations and agree supply and payment terms.",
+      "tasks": [
+        "Contact raw makhana traders",
+        "Compare prices, grade, MOQ and delivery charges",
+        "Negotiate price and payment terms",
+        "Select supplier and document agreed terms"
+      ],
+      "icon": "🤝"
+    },
+    {
+      "name": "Warehouse & Premises Setup",
+      "desc": "Finalize suitable premises and prepare a hygienic production and storage area.",
+      "tasks": [
+        "Finalize premises or warehouse",
+        "Check electricity, ventilation, water and pest control",
+        "Plan raw-material, production and finished-goods zones"
+      ],
+      "icon": "🏭"
+    },
+    {
+      "name": "Machinery Selection",
+      "desc": "Select equipment for multiple packet sizes and multiple products.",
+      "tasks": [
+        "Contact Hayat Engineering Works and comparable suppliers",
+        "Get quotations for powder filling and multi-size packing",
+        "Confirm sealing, weighing, speed, power and service support",
+        "Evaluate nitrogen flushing and compatible packaging"
+      ],
+      "icon": "⚙️"
+    },
+    {
+      "name": "Makhana Processing & Flavouring",
+      "desc": "Finalize roasting/popping, seasoning and masala-mixing process.",
+      "tasks": [
+        "Contact makhana popping/roasting machine suppliers",
+        "Evaluate seasoning tumbler or masala mixing machine",
+        "Trial salted and flavoured recipes",
+        "Document process settings and cleaning procedure"
+      ],
+      "icon": "🍿"
+    },
+    {
+      "name": "Licences & Compliance",
+      "desc": "Complete applicable food-business and packaged-commodity compliance.",
+      "tasks": [
+        "Confirm appropriate FSSAI registration/licence",
+        "Check Legal Metrology and local permissions",
+        "Prepare compliant product labels",
+        "Arrange batch/date/expiry coding machine",
+        "Plan product safety and shelf-life testing"
+      ],
+      "icon": "📋"
+    },
+    {
+      "name": "Packaging Suppliers",
+      "desc": "Source food-grade customized pouches, sachets and zipper bags.",
+      "tasks": [
+        "Contact at least 3 packaging suppliers",
+        "Confirm food-contact suitability and barrier properties",
+        "Compare plain pouches versus custom-printed MOQ",
+        "Confirm zipper options, lead times and delivery"
+      ],
+      "icon": "📦"
+    },
+    {
+      "name": "Brand Name & Packaging Design",
+      "desc": "Finalize brand identity, pack sizes, artwork and compliant label copy.",
+      "tasks": [
+        "Finalize brand name and check availability",
+        "Finalize logo and visual identity",
+        "Approve ₹5/₹10 sachet and makhana pouch designs",
+        "Proofread mandatory declarations before printing"
+      ],
+      "icon": "🎨"
+    },
+    {
+      "name": "Samples & Quality Testing",
+      "desc": "Produce pilot batches and validate taste, weight, seals and shelf life.",
+      "tasks": [
+        "Produce pilot batch of each selected SKU",
+        "Check net weight, seal integrity and taste",
+        "Arrange suitable product and shelf-life tests",
+        "Collect feedback and approve final recipes"
+      ],
+      "icon": "🧪"
+    },
+    {
+      "name": "Market Launch & Distribution",
+      "desc": "Launch locally, then expand to marketplaces and quick commerce.",
+      "tasks": [
+        "Prepare retailer price list and sales kit",
+        "Distribute samples to local shops and malls",
+        "Record feedback and first orders",
+        "Prepare Amazon listings and assess quick-commerce onboarding"
+      ],
+      "icon": "🚀"
+    }
+  ]
+}

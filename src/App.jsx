@@ -1,19 +1,75 @@
+// import React, { useEffect, useState } from 'react';
+// import AdminDashboard from './pages/AdminDashboard';
+// import HomePage from './pages/HomePage';
+// import CareNowPage from './pages/CareNowPage';
+// import DhritiEnterpriseAdmin from './pages/DhritiEnterpriseAdmin';
+
+// function App() {
+//   const [route, setRoute] = useState(window.location.hash);
+//   useEffect(() => {
+//     const handleHashChange = () => { const nextHash = window.location.hash; if (nextHash.startsWith('#/')) { setRoute(nextHash); window.scrollTo(0, 0); } };
+//     window.addEventListener('hashchange', handleHashChange);
+//     return () => window.removeEventListener('hashchange', handleHashChange);
+//   }, []);
+//   const openAdmin = () => { window.location.hash = '/admin'; };
+//   const exitAdmin = () => { window.location.hash = ''; window.scrollTo({ top: 0, behavior: 'smooth' }); };
+//   if (route === '#/admin') return <AdminDashboard onExit={exitAdmin} />;
+//   if (route === '#/enterprise-admin') return <DhritiEnterpriseAdmin onExit={exitAdmin} />;
+//   if (route === '#/carenow') return <CareNowPage onOpenAdmin={openAdmin} />;
+//   return <HomePage />;
+// }
+// export default App;
+
+
+
 import React, { useEffect, useState } from 'react';
 import AdminDashboard from './pages/AdminDashboard';
 import HomePage from './pages/HomePage';
 import CareNowPage from './pages/CareNowPage';
+import DhritiEnterpriseAdmin from './pages/DhritiEnterpriseAdmin';
 
 function App() {
   const [route, setRoute] = useState(window.location.hash);
+
   useEffect(() => {
-    const handleHashChange = () => { const nextHash = window.location.hash; if (nextHash.startsWith('#/')) { setRoute(nextHash); window.scrollTo(0, 0); } };
+    const handleHashChange = () => {
+      setRoute(window.location.hash);
+      window.scrollTo(0, 0);
+    };
+
     window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
-  const openAdmin = () => { window.location.hash = '/admin'; };
-  const exitAdmin = () => { window.location.hash = route === '#/admin' ? '#/carenow' : ''; window.scrollTo({ top: 0, behavior: 'smooth' }); };
-  if (route === '#/admin') return <AdminDashboard onExit={exitAdmin} />;
-  if (route === '#/carenow') return <CareNowPage onOpenAdmin={openAdmin} />;
+
+  const openAdmin = () => {
+    window.location.hash = '/admin';
+  };
+
+  const exitAdmin = () => {
+    // Return to the Dhritex homepage.
+    window.location.hash = '';
+    setRoute('');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  if (route === '#/admin') {
+    return <AdminDashboard onExit={exitAdmin} />;
+  }
+
+  if (route === '#/enterprise-admin') {
+    return <DhritiEnterpriseAdmin onExit={exitAdmin} />;
+  }
+
+  if (route === '#/carenow') {
+    return <CareNowPage onOpenAdmin={openAdmin} />;
+  }
+
+  // Default route: Dhritex homepage.
   return <HomePage />;
 }
+
 export default App;
+
