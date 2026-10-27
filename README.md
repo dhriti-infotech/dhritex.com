@@ -73,3 +73,8 @@ npm ci
 npm run build
 ```
 The repository's GitHub Pages workflow builds `dist` from source. `node_modules` and stale build output are intentionally omitted from the source archive; dependencies are restored by `npm ci`.
+
+
+## Dhriti Enterprises tracker data
+
+The default checklist/stage definitions are stored in `src/data/dhriti-enterprises-tracker.json` and bundled into the frontend at build time. This JSON file is the seed/template data; it is not a writable live database. Runtime edits are currently saved in the browser's Local Storage (`dhriti_enterprises_tracker_v1` and `dhriti_enterprise_contacts`). Browser storage can be cleared and is not shared across devices. To make edits durable and shared, implement authenticated backend APIs and persist tracker records in the server database. A JSON file on a static website cannot safely be updated by browser code, and redeploying the site can replace files.
